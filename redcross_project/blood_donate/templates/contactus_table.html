@@ -1,0 +1,218 @@
+
+{% include 'admindashboard.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Tables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+
+
+<style>
+  
+   table {
+            border: 6px solid rgb(124, 44, 44);
+            width: 80%;
+            margin: auto;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        h3 {
+            font-size: 10px;
+            margin: 0;
+            padding: 10px;
+        }
+        
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+        
+        td {
+            border: 2px solid brown;
+            height:90px;
+          
+        }
+        th,td {
+            border: 2px solid brown;
+            
+        }
+        th{
+          background-color: black;
+          color: aliceblue;
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        a{
+          border-radius: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            img{
+              height: auto;
+            }
+        }
+</style>
+<style>
+  .icon-container {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+/* Style the Font Awesome icon using :before pseudo-element */
+.icon-container:before {
+content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+font-family: 'Font Awesome 5 Free';
+font-size: 24px;
+color: #3498db;
+margin-right: 10px;
+}
+
+/* Hide the hover text by default */
+.hover-text {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color:red;
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+z-index: 1;
+width:150px;
+}
+
+/* Display the hover text when hovering over the icon container */
+.icon-container:hover .hover-text {
+display: block;
+}
+</style>
+</head>
+<body>
+  <div class="table-responsive" style="margin-left: 230px;">
+    <h2 align="center" style="margin-top: 23px;">ContactUs Data</h2>
+    <button type="button" class="btn btn-warning"> <a href="/contactus_form/" ><b color="white">ADD </b></a></button><br>
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr align="center">
+             
+
+  
+   
+   <th>Email</th>
+      <th>Phone No.</th>
+      <th>Website</th>
+      <th>Address</th>
+      <th>Map</th>
+      <th>Delete</th>
+      <th>Update</th></tr>
+    </thead>
+    <tbody>
+      {% for i in post %}
+      <tr>
+        <td>{{i.email}} </td> 
+        <td>{{i.contactno}} </td> 
+        <td>{{i.website}} </td>
+        <td>{{i.address}}</td>
+        <td>{{i.map}}</td> 
+        {% if user_profile.aconta == "1" %} 
+        <td>  
+        <div class="icon-container">
+          <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+          <span class="hover-text"><b>Permission Required</b></span>
+
+        </div>   
+        </td>
+        <td>
+          <div class="icon-container">
+            <i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></i>
+            <span class="hover-text"><b>Permission Required</b></span>
+
+          </div>
+        </td>                  
+      {% else %} 
+        <td><a href="/contactus_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+        <td><a href="/contactus_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></a></td>
+       
+       {% endif %}
+      </tr>
+      {% endfor %} 
+    </tbody>
+    </table>
+    <table class="table table-striped" id="myTable">
+      <thead>
+          <tr align="center">
+           
+
+
+            <th>Name</th>
+ <th>Email</th>
+    <th>Phone No.</th>
+    <th>Enquirytype</th>
+    <th>Address</th>
+    <th>Subject</th>
+    <th>Message</th>
+
+    <th>Delete</th></tr>
+  </thead>
+  <tbody>
+    {% for i in a %}
+    <tr>
+      <td>{{i.name}}</td>
+      <td>{{i.email}} </td> 
+      <td>{{i.contact}} </td>
+      <td>{{i.enquirytype}}</td> 
+      <td>{{i.city}} </td>
+      <td>{{i.subject}}</td>
+      <td>{{i.message}}</td> 
+      {% if user_profile.aconta == "1" %} 
+      <td>
+      <div class="icon-container">
+        <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+        <span class="hover-text"><b>Permission Required</b></span>
+      </div>
+      </td>
+      {% else %}
+
+      <td><a href="/contactdelete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+      {% endif %}
+    </tr>
+    {% endfor %} 
+  </tbody>
+  </table>
+</div>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+</body>
+</html>
+{% endblock %}

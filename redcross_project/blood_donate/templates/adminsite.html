@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="#" class="active">Dashboard</a></li>
+            <li><a href="#">Users</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Logout</a></li>
+        </ul>
+        <button id="toggle-button">Toggle Menu</button>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is the main content area.</p>
+    </div>
+
+    <script>
+        document.getElementById("toggle-button").addEventListener("click", function() {
+            document.querySelector(".sidebar").classList.toggle("collapsed");
+        });
+    </script>
+</body>
+</html>

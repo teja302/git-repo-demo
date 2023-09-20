@@ -1,0 +1,469 @@
+{%extends 'base.html'%} {%block head%} {% load static %}
+<!-- Main css -->
+<!-- <link rel="stylesheet" href="{%static 'UserProfile/css/search.css'%}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script> -->
+{%endblock%} {%block body%}
+<!----------------------------------------------------------------------------------------------
+                                                                Body Content
+    ----------------------------------------------------------------------------------------------->
+<style>
+
+    label {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+select,
+input {
+    height: 40px;
+    width: 95%;
+    margin-bottom: 10px;
+}
+@media only screen and (min-width: 1400px) {
+    .card{
+    margin:0px 80px 0px 80px
+}
+}
+.duser::first-letter{
+   text-transform: capitalize;
+}
+.body{
+    margin: 0;
+    background-color: #e0aaff;
+}
+/* Style for error messages */
+ul.messages {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    top: 25%; 
+    right: 100px; 
+    z-index: 1000; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    animation: scroll 8s linear infinite; 
+}
+
+ul.messages li {
+    background-color: #ff4d4d; 
+    color: #fff; 
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+}
+
+
+@keyframes scroll {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%); 
+    }
+}
+
+@media screen and (max-width: 768px) {
+    ul.messages {
+        font-size: 20px; 
+        top: 110px; 
+        right: 10px; 
+    }
+}
+
+
+</style>
+<body class="body" >
+
+<div class="row w-100">
+    <div class="col-12">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="SearchDonors mt-5">
+                    <h2>Search Donors</h2><hr>
+                </div>
+            </div>
+        </div>
+    </div></div>
+    
+<div class="col-12" >
+
+    {% if messages %}
+    <ul class="messages">
+    {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+
+        
+        <div class="container card"  style="background-color: #dddbda;">
+            
+            <form  enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                <div class="s_all_field  row" style="padding:30px;">
+                    
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+
+                        <label>Blood Group</label></br>
+                        <select name="blood" id="" class="form-select form-control" required >
+                            <option value="" >Select</option>
+                            <option value="A+" >A+</option>
+                            <option value="A-">A-</option>
+                            <option value="AB+" >AB+</option>
+                            <option value="AB-" >AB-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <label>Country</label>
+                        <select id="country-dropdown" class="form-control" name="country">
+                            <option value="">Select a country</option>
+                            {% for country in countries %}
+                                <option value="{{ country.pk }}" {% if country.name == "India" %}selected{% endif %}>{{ country.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <label>State</label></br>
+                        <select id="state-dropdown" class="form-control" name="state">
+                            <option value="">Select a state</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-3 col-md-12 col-sm-12">
+                        <label>District</label>
+                        <select id="district-dropdown" class="form-control" name="district">
+                            <option value="">Select a district</option>
+                        </select>
+                    </div>
+                  
+
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="address">Address:</label>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <select id="country-dropdown" class="form-control" name="country">
+                                            <option value="">Select a country</option>
+                                            {% for country in countries %}
+                                                <option value="{{ country.pk }}" {% if country.name == "India" %}selected{% endif %}>{{ country.name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select id="state-dropdown" class="form-control" name="state">
+                                            <option value="">Select a state</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select id="district-dropdown" class="form-control" name="district">
+                                            <option value="">Select a district</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <select id="city-dropdown" class="form-control" name="city">
+                                            <option value="">Select a city</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="col-lg-12 col-md-12 col-sm-12 search_btn mt-5" align="center">
+                       
+                        <button type="submit" value="Submit" class="btn btn-outline-danger">Search</button>
+                        
+                    </div>
+                </div>
+            </form>
+        </div>
+   
+
+  
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const countryDropdown = document.getElementById("country-dropdown");
+      const stateDropdown = document.getElementById("state-dropdown");
+      const districtDropdown = document.getElementById("district-dropdown");
+     
+  
+      function populateStates(selectedCountryId) {
+          stateDropdown.innerHTML = "<option value=''>Select a state</option>";
+  
+          if (selectedCountryId) {
+              fetch(`/get_states/${selectedCountryId}/`)
+                  .then(response => response.json())
+                  .then(data => {
+                      data.states.forEach(state => {
+                          stateDropdown.insertAdjacentHTML("beforeend", `<option value="${state.pk}">${state.name}</option>`);
+                      });
+                  });
+          }
+      }
+  
+      countryDropdown.addEventListener("change", function() {
+          const selectedCountryId = this.value;
+  
+          // Clear dependent dropdowns
+          districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+        
+  
+          populateStates(selectedCountryId);
+      });
+  
+      // Populate states dropdown when the page loads with default selected country
+      const defaultCountryId = countryDropdown.value;
+      populateStates(defaultCountryId);
+  
+      
+          stateDropdown.addEventListener("change", function() {
+              const selectedStateId = this.value;
+      
+              // Clear dependent dropdowns
+              districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+      
+              if (selectedStateId) {
+                  fetch(`/get_districts/${selectedStateId}/`)
+                      .then(response => response.json())
+                      .then(data => {
+                          data.districts.forEach(district => {
+                              districtDropdown.insertAdjacentHTML("beforeend", `<option value="${district.pk}">${district.name}</option>`);
+                          });
+                      });
+              }
+          });
+          
+         
+          // Similarly, implement the logic for the district and city dropdowns.
+      });
+      
+      </script>
+
+<div class="col-12 mt-5">
+    <div class="container">
+    <div class="donor_list">
+        <div class="donor">
+            <div class="row">
+                    {% if not user.is_authenticated %}
+                    {% else %}
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="donor_info text-center">
+                                <h3>Donors List</h3>
+                            </div>
+                        </div>
+                
+                        <div class="col-lg-12 col-md-12 col-sm-12  mt-3">
+                                <div class="input-group input-group-sm" style="width: 150px;float: right;">
+                            <input type="text" id="myInput" onkeyup="myFunction()" name="table_search" class="form-control float-right" placeholder="Search">
+                        </div>
+                       
+                        {% endif %}
+                
+                    <div class="donor">
+                        {% if  user.is_authenticated %}
+                        <table  class=" table table-bordered">
+                            <thead class="thead-light">
+                            <tr class="text-center">
+                                <th class="sortable" data-column="Sno" scope="col">  Sno </th>
+                                <th class="sortable" data-column="Blood Bank" scope="col" >Donor Name </th>
+                                <th class="sortable" data-column="Category" scope="col">  Mobile Number </th>
+                                <!-- <th class="sortable" data-column="Availability" scope="col">  Availability </th> -->
+                                <th class="sortable" data-column="Type" scope="col">  Gender </th>
+                                <th class="sortable" data-column="Last Updated" scope="col">  View Details </th>
+                              
+                            </tr></thead>
+                           <tbody id="myTable">
+                           
+                          
+                            {% for don in donorlist %}
+                            <tr class="text-center">
+                                <td scope="row">{{ don.id }}</td>
+                                <td class="duser">{{ don.user.username }}</td>
+                                <td>
+                                    <span class="partial-phone" data-full-phone="{{ don.phone_number }}">{{ "*******"|slice:"-7:" }}{{ don.phone_number|slice:"-3:" }}</span>
+                                </td>
+                                <!-- <td>{{ don.days_until_next_donation }} days to donate</td> -->
+                                <td>{{ don.gender }}</td>
+                                <td>
+                                    <button class="btn btn-outline-light bg-dark view-button">View</button>
+                                </td>
+                            </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6"><h4><center>No Data Found!</center></h4></td>
+                        </tr>
+                        {% endfor %}
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const viewButtons = document.querySelectorAll('.view-button');
+                                viewButtons.forEach(function (button) {
+                                    button.addEventListener('click', function () {
+                                        const row = this.closest('tr');
+                                        const partialPhone = row.querySelector('.partial-phone');
+                                        const fullPhone = partialPhone.dataset.fullPhone;
+                        
+                                        // Hide all other fully displayed phone numbers
+                                        const allPartialPhones = document.querySelectorAll('.partial-phone');
+                                        allPartialPhones.forEach(function (element) {
+                                            if (element !== partialPhone) {
+                                                element.textContent = '*******' + element.dataset.fullPhone.slice(-3);
+                                                const hideButton = element.closest('tr').querySelector('.view-button');
+                                                hideButton.textContent = 'View';
+                                            }
+                                        });
+                        
+                                        if (partialPhone.textContent === fullPhone) {
+                                            partialPhone.textContent = '*******' + fullPhone.slice(-3);
+                                            this.textContent = 'View';
+                                        } else {
+                                            partialPhone.textContent = fullPhone;
+                                            this.textContent = 'Hide';
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        
+                        
+                        
+                                                 
+                        {% else %}
+                        
+                        <!-- {% if request.method == "POST" %}
+                        <div class="col-12">
+                            <center>
+                                <h3>Please Login to Continue</h3>
+                                <h2>
+                                    <a id="#showLogin" class="ml-2 text-primary"><i class="fa fa-lock"></i> Login</a>
+                                </h2>
+                            </center>
+                        </div>
+                        {% else %}
+                        {% endif %}
+                        -->
+                       
+                       
+                        {% endif %}
+                           
+                           
+                        
+                       
+                        </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="mt-5">
+            <div class="row">
+                {% for donors in donorlist %}
+                <div class="person col-lg-4 col-md-12 col-sm-12 mb-5">
+                    <div class="avatar">
+                        <img src="{%static 'UserProfile/images/avatar.jpg'%}" alt="Donor Avatar">
+                    </div>
+                    <div class="info">
+                        <div class="metadata">
+                            <div class="meta donor_name">
+                                
+                            </div>
+                            <div class="meta donor_name">
+                                <span class="label"><b>Name:</b></span>
+                                <span class="value"><b>{{donors.username}}</b></span>
+                            </div>
+
+                            <div class="meta district">
+                                <span class="label"><b>Phone:</b></span>
+                                <span class="value"><b>{{donors.phone_number}}</b></span>
+                            </div>
+
+                            <div class="meta blood_group">
+                                <span class="label"><b>Blood Group:</b></span>
+                                <span class="value"><b>{{donors.bloodgroup}}</b></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div> -->
+    </div>
+</div></div>
+</div>
+
+<script>
+    const headers = document.querySelectorAll('.sortable');
+    let currentColumn = '';
+    let isAscending = true;
+  
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const column = header.getAttribute('data-column');
+        if (column === currentColumn) {
+          isAscending = !isAscending;
+        } else {
+          currentColumn = column;
+          isAscending = true;
+        }
+  
+        // Update arrow direction
+        headers.forEach(h => {
+          if (h === header) {
+            h.textContent = `${h.getAttribute('data-column')} ${isAscending ? '▲' : '▼'}`;
+          } else {
+            h.textContent = `${h.getAttribute('data-column')} ▼`;
+          }
+        });
+  
+        // Sort the table
+        const table = header.closest('table');
+        const rows = Array.from(table.querySelectorAll('tr')).slice(1);
+        rows.sort((rowA, rowB) => {
+          const cellA = rowA.querySelector(`td:nth-child(${currentColumn === 'item' ? 1 : 2})`).textContent;
+          const cellB = rowB.querySelector(`td:nth-child(${currentColumn === 'item' ? 1 : 2})`).textContent;
+          return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        });
+        table.tBodies[0].append(...rows);
+      });
+    });
+  
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const rows = Array.from(document.querySelectorAll('tr')).slice(1);
+  
+      rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td'));
+        const rowText = cells.map(cell => cell.textContent.trim().toLowerCase());
+        const isVisible = rowText.some(text => text.includes(searchTerm));
+        row.style.display = isVisible ? '' : 'none';
+      });
+    });
+  </script>
+  
+<script type="text/javascript">
+    $(document).ready(function () {
+
+       //Filter table
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+});
+</script>
+    
+</body>
+{% endblock %}

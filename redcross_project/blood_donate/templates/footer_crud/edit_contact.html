@@ -1,0 +1,14 @@
+
+{% block content %}
+<h2>Edit Contact</h2>
+<form method="post">
+  {% csrf_token %}
+  <label for="heading">Heading:</label>
+  <input type="text" name="heading" value="{{ contact.heading }}" required><br>
+  <label for="address">Address:</label>
+  <input type="text" name="address" value="{{ contact.address }}" required><br>
+  <label for="email">Email:</label>
+  <input type="email" name="email" value="{{ contact.email }}" required><br>
+  <button type="submit">Update</button>
+</form>
+{% endblock %}

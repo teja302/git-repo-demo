@@ -1,0 +1,51 @@
+<!-- read.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AppFooters</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>AppFooters</h1>
+    <ul>
+        {% for appfooter in appfooters %}
+            <li>
+                <strong>{{ appfooter.name }}</strong><br>
+                URL: {{ appfooter.url }}<br>
+                Icon: {{ appfooter.icon }}<br>
+                Heading: {{ appfooter.heading }}
+                <br>
+                <a href="{% url 'update_appfooter' appfooter.id %}">Update</a>
+                <a href="{% url 'delete_appfooter' appfooter.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+

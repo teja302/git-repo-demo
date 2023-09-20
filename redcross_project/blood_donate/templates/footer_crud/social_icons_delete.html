@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Social Icon</title>
+</head>
+<body>
+    <h1>Delete Social Icon</h1>
+    <p>Are you sure you want to delete the following icon?</p>
+    <img src="{{ icon.icon1.url }}" alt="Icon">
+    <p><a href="{% url 'social_icon/list' %}">Cancel</a></p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

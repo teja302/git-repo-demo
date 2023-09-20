@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create App</title>
+</head>
+<body>
+    <h1>Create New App</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="heading">Heading:</label>
+        <input type="text" id="heading" name="heading"><br>
+        <label for="app">Image:</label>
+        <input type="file" id="app" name="app"><br>
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url"><br>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

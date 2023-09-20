@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    
+</head>
+
+    <style>
+           
+           @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+          /* border-radius: 25px; */
+        
+        }
+        .close {
+        color: #131212;
+        float: right;
+        font-size: 28px;
+        /* font-weight: bold; */
+        cursor: pointer;
+        top: 50px;
+        right: 0px;
+    }
+        #FormPopup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+        border: 1px solid #ddd;
+          border-radius: 25px;
+        z-index: 1000;
+        height: 670px;
+        width: 400px;
+        background-color: rgb(248, 248, 248);
+    }
+   
+    .container1{
+            
+            margin: 10% auto;
+          
+            bottom: 50px;
+            align-items: center;
+           
+           
+    }
+    .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #c41515;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #c41515;
+        }
+        .text-danger {
+          color: red;
+          font-size: 14px;
+          margin-top: 5px;
+          display: none;
+        }
+    .form-control1{
+        border-radius: 15px;
+        width: 350px;
+        height: 40px;
+        border-color: black;
+    }
+    .close{
+        right: 70px;
+       
+    }
+    
+    </style>
+<body>
+
+  
+       <!-- <a  id="showForm" class="text-primary">Last Donation Details </a> -->
+   
+    <div class="FormPopup" id="FormPopup" style="display: none;overflow-y: scroll; ">
+    <div class="container1 " >
+        <span class="close" id="closeForm">&times;</span>
+        <h3>Last Donate Details</h3>
+       
+            <form action="/lastdonform/" method="POST" id="donateForm" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="patientname">Patient Name:</label>
+                            <input type="text" id="patientname" name="patientname" class="form-control1" required><br>
+                            <small id="patientnameError" class="text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="hospitalname">Hospital Name:</label>
+                            <input type="text" id="hospitalname" name="hospitalname" class="form-control1" required><br>
+                            <small id="hospitalnameError" class="text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="form-group">
+                            <label for="patientname">Purpose:</label>
+                           <input type="text" name="purpose" class="form-control1">
+                            <small id="patientnameError" class="text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="date">Last Donation Date:</label>
+                            <input type="date" id="date" name="date"class="form-control1" required max="{{ today|date:'Y-m-d' }}"><br>
+                            <small id="dateError" class="text-danger"></small>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="address">Place:</label>
+                            <textarea id="address" name="address" class="form-control1" rows="4" required></textarea>
+                            <small id="addressError" class="text-danger"></small>
+                        </div>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Upload the Image</label>
+                            <input type="file" name="uploade_image" class="form-control1" required>
+                            <small id="uploade_imageError" class="text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                    <button type="submit" value="Submit">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <script>
+       document.addEventListener("DOMContentLoaded", function() {
+    // Open the form when the button is clicked
+    document.getElementById("showForm").addEventListener("click", function() {
+        document.getElementById("FormPopup").style.display = "block";
+    });
+
+    // Close the form when the close button is clicked
+    document.getElementById("closeForm").addEventListener("click", function() {
+        document.getElementById("FormPopup").style.display = "none";
+    });
+
+    // Validate the form before submission
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+        const patientName = document.getElementById("patientname").value;
+        const hospitalName = document.getElementById("hospitalname").value;
+        const bloodGroup = document.getElementById("bloodgroup").value;
+        const donationDate = document.getElementById("date").value;
+        const address = document.getElementById("address").value;
+        const uploadImage = document.querySelector("input[name='uploade_image']");
+
+        let isValid = true;
+
+        if (patientName.trim() === "") {
+            document.getElementById("patientnameError").textContent = "Patient name is required.";
+            isValid = false;
+        } else {
+            document.getElementById("patientnameError").textContent = "";
+        }
+        if (hospitalName.trim() === "") {
+            document.getElementById("hospitalnameError").textContent = "Hospital name is required.";
+            isValid = false;
+        } else {
+            document.getElementById("hospitalnameError").textContent = "";
+        }
+
+        if (bloodGroup === "") {
+            document.getElementById("bloodgroupError").textContent = "Blood group is required.";
+            isValid = false;
+        } else {
+            document.getElementById("bloodgroupError").textContent = "";
+        }
+
+        if (donationDate === "") {
+            document.getElementById("dateError").textContent = "Last donation date is required.";
+            isValid = false;
+        } else {
+            document.getElementById("dateError").textContent = "";
+        }
+
+        if (address.trim() === "") {
+            document.getElementById("addressError").textContent = "Address is required.";
+            isValid = false;
+        } else {
+            document.getElementById("addressError").textContent = "";
+        }
+
+        if (uploadImage.files.length === 0) {
+            document.getElementById("uploade_imageError").textContent = "Image upload is required.";
+            isValid = false;
+        } else {
+            document.getElementById("uploade_imageError").textContent = "";
+        }
+
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
+
+        </script>
+        
+    
+</body>
+</html>

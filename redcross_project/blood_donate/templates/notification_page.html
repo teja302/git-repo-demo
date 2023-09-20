@@ -1,0 +1,21 @@
+<!-- notification_page.html -->
+{% extends "base.html" %}
+
+{% block body %}
+<section>
+<h1>Notifications</h1>
+
+<ul>
+    {% for notification in notifications %}
+    <li>
+        {% if not notification.is_read == 'True' %}
+            <strong>{{ notification.message }}</strong> (Unread)
+        {% else %}
+            {{ notification.message }}
+        {% endif %}
+    </li>
+{% empty %}
+    <li>No notifications</li>
+{% endfor %}
+</ul>
+{% endblock %}

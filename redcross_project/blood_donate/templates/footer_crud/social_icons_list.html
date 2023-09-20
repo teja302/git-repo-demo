@@ -1,0 +1,68 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Social Icons List</title>
+</head>
+<body>
+    <h1>Social Icons</h1>
+    <ul>
+        {% for icon in icons %}
+            <li>
+                <img src="{{ icon.icon1.url }}" alt="Icon">
+                <a href="{{ icon.url1 }}">{{ icon.url1 }}</a>
+                <a href="{% url 'social_icon/update' icon.pk %}">Edit</a>
+                <form method="post" action="{% url 'social_icon/delete' icon.pk %}">
+                    {% csrf_token %}
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Icons CRUD</title>
+</head>
+<body>
+    <h1>Social Icons CRUD</h1>
+    
+    <!-- Create Social Icon Form -->
+    <h2>Create New Social Icon</h2>
+    <form method="post" action="{% url 'social_icon_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="icon1">Icon:</label>
+        <input type="file" name="icon1" required>
+        <label for="url1">URL:</label>
+        <input type="text" name="url1" required>
+        <button type="submit">Create</button>
+    </form>
+    
+    <!-- List of Social Icons -->
+    <h2>Social Icons List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Icon</th>
+                <th>URL</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for icon in icons %}
+            <tr>
+                <td><img src="{{ icon.icon1.url }}" alt="Social Icon"></td>
+                <td>{{ icon.url1 }}</td>
+                <td>
+                    <a href="{% url 'social_icon_update' icon.pk %}">Edit</a>
+                    <a href="{% url 'social_icon_delete' icon.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

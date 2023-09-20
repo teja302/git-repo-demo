@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #0984e3);
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 4px;
+        }
+        .btn-primary {
+            margin-top: 20px;
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+        .btn-primary:hover {
+            background-color: #5341a9;
+            border-color: #5341a9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <center><h1 class="mb-4">UPDATE Additional Requirements </h1></center>
+        <form method="post" enctype="multipart/form-data" action="/additional_update/{{post.id}}">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="col-md-6 form-group">
+                    <label for="heading">Heading</label>
+                    <input type="text" id="heading" name="heading" class="form-control" value="{{post.heading}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point1">Point1</label>
+                    <input type="text" id="point1" name="point1" class="form-control" value="{{post.point1}}">
+                </div>
+                
+                 <div class="col-md-6 form-group">
+                    <label for="point2">Point2</label>
+                    <input type="text" id="point2" name="point2" class="form-control" value="{{post.point2}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point3">Point3</label>
+                    <input type="text" id="point3" name="point3" class="form-control" value="{{post.point3}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point4">Point4</label>
+                    <input type="text" id="point4" name="point4" class="form-control" value="{{post.point4}}">
+                </div>
+                 <div class="col-md-6 form-group">
+                    <label for="point5">Point5</label>
+                    <input type="text" id="point5" name="point5" class="form-control" value="{{post.point5}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point6">Point6</label>
+                    <input type="text" id="point6" name="point6" class="form-control" value="{{post.point6}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point7">Point7</label>
+                    <input type="text" id="point7" name="point7" class="form-control" value="{{post.point7}}">
+                </div> 
+
+                <div class="col-md-6 form-group">
+                    <label for="point8">Point8</label>
+                    <input type="text" id="point8" name="point8" class="form-control" value="{{post.point8}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point9">Point9</label>
+                    <input type="text" id="point9" name="point9" class="form-control" value="{{post.point9}}">
+                </div> 
+                <div class="col-md-6 form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" class="form-control" value="{{post.image}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="image1">Image1</label>
+                    <input type="file" id="image1" name="image1" class="form-control" value="{{post.image1}}">
+                </div>
+                
+            </div>
+           
+           <center> <button type="submit" class="btn btn-primary">Update </button></center>
+        </form>
+    </div>
+</body>
+</html>

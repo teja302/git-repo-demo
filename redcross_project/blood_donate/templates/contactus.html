@@ -1,0 +1,341 @@
+{% extends "base.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+
+    <style>
+
+        .contact-form {
+            background-color: rgb(166, 184, 193); 
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 0px; 
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .form-row label {
+            font-weight: bold;
+            width: 45%;
+            display: flex;
+            align-items: center;
+            color: #e74c3c; /* Red color */
+        }
+
+        .form-row label i {
+            margin-right: 10px;
+        }
+
+        .form-row input[type="text"],
+        .form-row input[type="email"],
+        .form-row input[type="tel"],
+        .form-row textarea {
+            width: 100%; /* Adjust width to fill the container */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            transition: border-color 0.3s ease;
+            background-color: #f5f8fa; /* Input field background color */
+        }
+
+        .form-row input[type="text"]:focus,
+        .form-row input[type="email"]:focus,
+        .form-row input[type="tel"]:focus,
+        .form-row textarea:focus {
+            border-color: #e74c3c; /* Red color */
+        }
+
+        textarea {
+            width: 100%; /* Adjust width to fill the container */
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: green; /* Blue color */
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition:0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: red; /* Slightly darker blue */
+        }
+        /* .logo {
+        font-size: 500px;
+        margin-right: 10px;
+        color: #e74c3c; 
+        }
+
+        .info {
+            font-size: 16px;
+            color: #333;
+        }
+         */
+        body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f8fa;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* .row {
+                flex-direction: column;
+            } */
+        .map-container {
+                margin-right: 0;
+                overflow: hidden;
+            }
+
+
+
+/* @media (max-width: 768px) {
+
+    .col-lg-6 {
+        flex: 0 0 100%;
+    }
+    .col-lg-12{
+        flex: 0 0 200%;
+    }
+
+} */
+
+.contact-info {
+        font-family: Arial, sans-serif;
+        color: #333; /* Text color for the container */
+    }
+
+    .contact-item {
+        margin-bottom: 40px;
+    }
+
+    .info {
+        font-size: 15px;
+        color: #333;
+        margin-left: 0px;
+       
+    }
+
+    .logo {
+        font-size: 30px;
+        margin-right: 10px;
+        color: #e74c3c; 
+
+    }
+   .col-lg-3{
+    width: auto;
+    height: auto;
+   }
+       
+        
+
+        
+       
+    </style>
+
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                
+    <div class="contact-form" style="margin-top: 80px;">
+       <center> <h1>Contact Us</h1></center>
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+            <div class="form-row">
+                <label for="name"><i class="fas fa-user"></i> Name:</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" class="form-control" required>
+            </div>
+
+            <div class="form-row">
+                <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" class="form-control"required>
+            </div>
+
+            <div class="form-row">
+                <label for="enquirytype" class="big-label"><i class="fas fa-filter"></i> Enquiry Type:</label>
+            </div>
+            <div class="form-row">
+                <select id="enquirytype"class="form-control"name="enquirytype" class="big-label-select" required>
+                    <option value="" disabled selected>Select Enquiry Type</option>
+                    <option value="blood-donor">Blood Donor</option>
+                    <option value="blood-type">Blood Type</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label for="contact"><i class="fas fa-phone"></i> Contact Number:</label>
+                <input type="tel" id="contact" name="contact" placeholder="Your Contact Number"class="form-control" required>
+            </div>
+
+            <div class="form-row">
+                <label for="subject"><i class="fas fa-edit"></i> Subject:</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject"class="form-control" required>
+            </div>
+
+            <div class="form-row">
+                <label for="city"><i class="fas fa-map-marker-alt"></i> City:</label>
+                <input type="text" id="city" name="city" placeholder="Your City" class="form-control"required>
+            </div>
+
+            <div class="form-row">
+                <label for="message"><i class="fas fa-comment"></i>Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message" class="form-control"required></textarea>
+            </div>
+
+            <center><input type="submit" value="Submit"></center>
+        </form>
+    </div>
+    </div>
+    
+    <div class="col-lg-1" >
+    </div>
+    {% for i in d %}
+    <div class="col-lg-3">
+        <div class="contact-info">
+            <h2 style="margin-top: 100px;"></h2>
+            <p style="font-size: 30px;">Contact Info</p>
+    
+            <div class="contact-item">
+                <i style="font-size: 30px;" class="fas fa-envelope logo"></i>
+                <span class="info"><b>Email:</b> {{i.email}}</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-phone logo"></i>
+                <span class="info"><b>Phone:</b> {{i.contactno}}</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-globe logo"></i>
+                <span class="info"><b>Website:</b> {{i.website}}</span>
+            </div>
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt logo"></i>
+                <span class="info"><b>Address:</b> {{i.address}}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="map-container">
+     <h1 style="font-style: italic; color: #1f1d1d; margin-top: 80px;" >Location </h1>
+     
+            <iframe  src="{{i.map}}" 
+             allowfullscreen="" 
+             loading="lazy" 
+             referrerpolicy="no-referrer-when-downgrade"
+             style="border:0; width: 100%;height: 500px; margin-top: 20px;" >
+            </iframe>
+            <br><br>
+
+            <div class="container">
+            
+                            <div class="contact-item"> 
+                                
+                                <span class="info"><b>Address:</b>                   
+                                                   {{i.address}}</span>
+                            </div>
+                    
+                                                
+            </div>
+
+       </div> 
+    </div>
+    </div>
+    {% endfor %}
+</div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.querySelector(".contact-form");
+            
+            form.addEventListener("submit", function(event) {
+                const name = form.querySelector("#name");
+                const email = form.querySelector("#email");
+                const contact = form.querySelector("#contact");
+                const subject = form.querySelector("#subject");
+                const city = form.querySelector("#city");
+                const message = form.querySelector("#message");
+                
+                let isValid = true;
+                
+                if (!name.value.trim()) {
+                    isValid = false;
+                    name.style.borderColor = "red";
+                }
+                
+                if (!email.value.trim() || !isValidEmail(email.value)) {
+                    isValid = false;
+                    email.style.borderColor = "red";
+                }
+                
+                if (!contact.value.trim() || !isValidPhoneNumber(contact.value)) {
+                    isValid = false;
+                    contact.style.borderColor = "red";
+                }
+                
+                if (!subject.value.trim()) {
+                    isValid = false;
+                    subject.style.borderColor = "red";
+                }
+                
+                if (!city.value.trim()) {
+                    isValid = false;
+                    city.style.borderColor = "red";
+                }
+                
+                if (!message.value.trim()) {
+                    isValid = false;
+                    message.style.borderColor = "red";
+                }
+                
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+            
+            function isValidEmail(email) {
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailPattern.test(email);
+            }
+            
+            function isValidPhoneNumber(phone) {
+                const phonePattern = /^\d{10}$/; // Change this pattern based on your phone number format
+                return phonePattern.test(phone);
+            }
+        });
+    </script>
+    
+</body>
+</html>
+{% endblock %}

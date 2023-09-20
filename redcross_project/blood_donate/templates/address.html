@@ -1,0 +1,759 @@
+<!-- <html>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+   <style>
+     @media (max-width: 767px) {
+        table.responsive {
+            width: 100%;
+            margin-bottom: 1rem;
+            background-color: transparent;
+        }
+
+        table.responsive th {
+            display: none;
+        }
+
+        table.responsive td {
+            display: block;
+            text-align: left;
+        }
+
+        table.responsive td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+        }
+
+        table.responsive td:last-child {
+            border-bottom: 0;
+        }
+    }
+   </style>
+
+<body class="body" >
+<div class="container">
+            
+        <form  enctype="multipart/form-data" method="POST" >
+            {% csrf_token %}
+            <div class="row">
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <label>Country</label>
+            <select id="country-dropdown" class="form-control" name="country">
+                <option value="">Select a country</option>
+                {% for country in countries %}
+                    <option value="{{ country.pk }}" {% if country.name == "India" %}selected{% endif %}>{{ country.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <label>State</label></br>
+            <select id="state-dropdown" class="form-control" name="state">
+                <option value="">Select a state</option>
+            </select>
+        </div>
+        <div class="col-lg-3 col-md-12 col-sm-12">
+            <label>District</label>
+            <select id="district-dropdown" class="form-control" name="district">
+                <option value="">Select a district</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 search_btn mt-5" align="center">
+                       
+            <button type="submit" value="Submit" class="btn btn-outline-danger">Search</button>
+            
+        </div>
+    </div>
+    
+    <div class="col-lg-12 col-md-12 col-sm-12 mt-5">
+        <table id="myTable" class="table table-bordered">
+            <thead class="thead-light">
+                <tr class="text-center">
+                    <th class="sortable" data-column="Sno" scope="col">Sno</th>
+                    <th class="sortable" data-column="username" scope="col">User Name</th>
+                    <th class="sortable" data-column="email" scope="col">Email</th>
+                    <th class="sortable" data-column="district" scope="col">District</th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                {% if  user.is_authenticated %}
+                    {% for user in userlist %}
+                        <tr class="text-center">
+                            <td>{{user.id}}</td>
+                            <td class="user-name" data-username="{{ user.username }}">{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.address.district}}</td>
+                        </tr>
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+            
+        </table>
+    </div>
+    <div id="permissions-content">
+        <div class="row mt-2">
+            <label>select the module </label>
+        </div>
+        <div class="row">
+        <div class="col-3 mt-4">
+           
+        
+                <label>Home module:</label>
+            </div>
+          
+        <div class="col-9 mt-4">
+            <div class="row">
+                
+            <div  class="col-2">
+                <input type="checkbox" name="create" id="Create">
+                <label for="Create">Create</label>
+            </div>
+            <div  class="col-2">
+                <input type="checkbox" name="Update" id="Read">
+                <label for="Read">Read</label>
+            </div>
+            <div  class="col-2">
+                <input type="checkbox" name="Update" id="Update">
+                <label for="Update">Update</label>
+            </div>
+            <div  class="col-2">
+                <input type="checkbox" name="Delete" id="Delete">
+                <label for="Delete">Delete</label>
+            </div>
+        </div>
+        </div></div>
+        <div class="row">
+            <div class="col-3 mt-2">
+               
+            
+                    <label>About Us module:</label>
+                </div>
+              
+            <div class="col-9 mt-2">
+                <div class="row">
+                    
+                <div  class="col-2">
+                    <input type="checkbox" name="create" id="Create">
+                    <label for="Create">Create</label>
+                </div>
+                <div  class="col-2">
+                    <input type="checkbox" name="Update" id="Read">
+                    <label for="Read">Read</label>
+                </div>
+                <div  class="col-2">
+                    <input type="checkbox" name="Update" id="Update">
+                    <label for="Update">Update</label>
+                </div>
+                <div  class="col-2">
+                    <input type="checkbox" name="Delete" id="Delete">
+                    <label for="Delete">Delete</label>
+                </div>
+            </div>
+            </div></div>
+            <div class="row">
+                <div class="col-3 mt-2">
+                   
+                
+                        <label>Events module:</label>
+                    </div>
+                  
+                <div class="col-9 mt-2">
+                    <div class="row">
+                        
+                    <div  class="col-2">
+                        <input type="checkbox" name="create" id="Create">
+                        <label for="Create">Create</label>
+                    </div>
+                    <div  class="col-2">
+                        <input type="checkbox" name="Update" id="Read">
+                        <label for="Read">Read</label>
+                    </div>
+                    <div  class="col-2">
+                        <input type="checkbox" name="Update" id="Update">
+                        <label for="Update">Update</label>
+                    </div>
+                    <div  class="col-2">
+                        <input type="checkbox" name="Delete" id="Delete">
+                        <label for="Delete">Delete</label>
+                    </div>
+                </div>
+                </div></div>
+                <div class="row">
+                    <div class="col-3 mt-2">
+                       
+                    
+                            <label>Blood Donation module:</label>
+                        </div>
+                      
+                    <div class="col-9 mt-2">
+                        <div class="row">
+                            
+                        <div  class="col-2">
+                            <input type="checkbox" name="create" id="Create">
+                            <label for="Create">Create</label>
+                        </div>
+                        <div  class="col-2">
+                            <input type="checkbox" name="Update" id="Read">
+                            <label for="Read">Read</label>
+                        </div>
+                        <div  class="col-2">
+                            <input type="checkbox" name="Update" id="Update">
+                            <label for="Update">Update</label>
+                        </div>
+                        <div  class="col-2">
+                            <input type="checkbox" name="Delete" id="Delete">
+                            <label for="Delete">Delete</label>
+                        </div>
+                    </div>
+                    </div></div>
+                    <div class="row">
+                        <div class="col-3 mt-2">
+                           
+                        
+                                <label>Blood Availibility module:</label>
+                            </div>
+                          
+                        <div class="col-9 mt-2">
+                            <div class="row">
+                                
+                            <div  class="col-2">
+                                <input type="checkbox" name="create" id="Create">
+                                <label for="Create">Create</label>
+                            </div>
+                            <div  class="col-2">
+                                <input type="checkbox" name="Update" id="Read">
+                                <label for="Read">Read</label>
+                            </div>
+                            <div  class="col-2">
+                                <input type="checkbox" name="Update" id="Update">
+                                <label for="Update">Update</label>
+                            </div>
+                            <div  class="col-2">
+                                <input type="checkbox" name="Delete" id="Delete">
+                                <label for="Delete">Delete</label>
+                            </div>
+                        </div>
+                        </div></div>
+                        <div class="row">
+                            <div class="col-3 mt-2">
+                               
+                            
+                                    <label>Eligibility module:</label>
+                                </div>
+                              
+                            <div class="col-9 mt-2">
+                                <div class="row">
+                                    
+                                <div  class="col-2">
+                                    <input type="checkbox" name="create" id="Create">
+                                    <label for="Create">Create</label>
+                                </div>
+                                <div  class="col-2">
+                                    <input type="checkbox" name="Update" id="Read">
+                                    <label for="Read">Read</label>
+                                </div>
+                                <div  class="col-2">
+                                    <input type="checkbox" name="Update" id="Update">
+                                    <label for="Update">Update</label>
+                                </div>
+                                <div  class="col-2">
+                                    <input type="checkbox" name="Delete" id="Delete">
+                                    <label for="Delete">Delete</label>
+                                </div>
+                            </div>
+                            </div></div>
+                            <div class="row">
+                                <div class="col-3 mt-2">
+                                   
+                                
+                                        <label>Gallery module:</label>
+                                    </div>
+                                  
+                                <div class="col-9 mt-2">
+                                    <div class="row">
+                                        
+                                    <div  class="col-2">
+                                        <input type="checkbox" name="create" id="Create">
+                                        <label for="Create">Create</label>
+                                    </div>
+                                    <div  class="col-2">
+                                        <input type="checkbox" name="Update" id="Read">
+                                        <label for="Read">Read</label>
+                                    </div>
+                                    <div  class="col-2">
+                                        <input type="checkbox" name="Update" id="Update">
+                                        <label for="Update">Update</label>
+                                    </div>
+                                    <div  class="col-2">
+                                        <input type="checkbox" name="Delete" id="Delete">
+                                        <label for="Delete">Delete</label>
+                                    </div>
+                                </div>
+                                </div></div>
+                                <div class="row">
+                                    <div class="col-3 mt-2">
+                                       
+                                    
+                                            <label>Contact Us module:</label>
+                                        </div>
+                                      
+                                    <div class="col-9 mt-2">
+                                        <div class="row">
+                                            
+                                        <div  class="col-2">
+                                            <input type="checkbox" name="create" id="Create">
+                                            <label for="Create">Create</label>
+                                        </div>
+                                        <div  class="col-2">
+                                            <input type="checkbox" name="Update" id="Read">
+                                            <label for="Read">Read</label>
+                                        </div>
+                                        <div  class="col-2">
+                                            <input type="checkbox" name="Update" id="Update">
+                                            <label for="Update">Update</label>
+                                        </div>
+                                        <div  class="col-2">
+                                            <input type="checkbox" name="Delete" id="Delete">
+                                            <label for="Delete">Delete</label>
+                                        </div>
+                                    </div>
+                                    </div></div></div>
+       
+
+        </form>
+    </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              const countryDropdown = document.getElementById("country-dropdown");
+              const stateDropdown = document.getElementById("state-dropdown");
+              const districtDropdown = document.getElementById("district-dropdown");
+             
+          
+              function populateStates(selectedCountryId) {
+                  stateDropdown.innerHTML = "<option value=''>Select a state</option>";
+          
+                  if (selectedCountryId) {
+                      fetch(`/get_states/${selectedCountryId}/`)
+                          .then(response => response.json())
+                          .then(data => {
+                              data.states.forEach(state => {
+                                  stateDropdown.insertAdjacentHTML("beforeend", `<option value="${state.pk}">${state.name}</option>`);
+                              });
+                          });
+                  }
+              }
+          
+              countryDropdown.addEventListener("change", function() {
+                  const selectedCountryId = this.value;
+          
+                  
+                  districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+                
+          
+                  populateStates(selectedCountryId);
+              });
+          
+             
+              const defaultCountryId = countryDropdown.value;
+              populateStates(defaultCountryId);
+          
+              
+                  stateDropdown.addEventListener("change", function() {
+                      const selectedStateId = this.value;
+              
+                      
+                      districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+              
+                      if (selectedStateId) {
+                          fetch(`/get_districts/${selectedStateId}/`)
+                              .then(response => response.json())
+                              .then(data => {
+                                  data.districts.forEach(district => {
+                                      districtDropdown.insertAdjacentHTML("beforeend", `<option value="${district.pk}">${district.name}</option>`);
+                                  });
+                              });
+                      }
+                  });
+                  
+                 
+                 
+              });
+              
+              </script>
+
+  
+    
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      
+
+        const usersDropdown = document.getElementById("users-dropdown");
+        const permissionsContentDiv = document.getElementById("permissions-content");
+
+        usersDropdown.addEventListener("change", function() {
+            const selectedUsername = this.value;
+
+            if (selectedUsername) {
+                fetch(`/get_user_permissions/${selectedUsername}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                      
+                        fetch('/path/to/permission.html')
+                            .then(response => response.text())
+                            .then(html => {
+                                permissionsContentDiv.innerHTML = html;
+                            });
+                    });
+            } else {
+                permissionsContentDiv.innerHTML = ""; 
+            }
+        });
+
+     
+    });
+</script>
+
+<script>
+    const headers = document.querySelectorAll('.sortable');
+    let currentColumn = '';
+    let isAscending = true;
+  
+    headers.forEach(header => {
+      header.addEventListener('click', () => {
+        const column = header.getAttribute('data-column');
+        if (column === currentColumn) {
+          isAscending = !isAscending;
+        } else {
+          currentColumn = column;
+          isAscending = true;
+        }
+  
+       
+        headers.forEach(h => {
+          if (h === header) {
+            h.textContent = `${h.getAttribute('data-column')} ${isAscending ? '▲' : '▼'}`;
+          } else {
+            h.textContent = `${h.getAttribute('data-column')} ▼`;
+          }
+        });
+  
+        
+        const table = header.closest('table');
+        const rows = Array.from(table.querySelectorAll('tr')).slice(1);
+        rows.sort((rowA, rowB) => {
+          const cellA = rowA.querySelector(`td:nth-child(${currentColumn === 'item' ? 1 : 2})`).textContent;
+          const cellB = rowB.querySelector(`td:nth-child(${currentColumn === 'item' ? 1 : 2})`).textContent;
+          return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+        });
+        table.tBodies[0].append(...rows);
+      });
+    });
+  
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      const rows = Array.from(document.querySelectorAll('tr')).slice(1);
+  
+      rows.forEach(row => {
+        const cells = Array.from(row.querySelectorAll('td'));
+        const rowText = cells.map(cell => cell.textContent.trim().toLowerCase());
+        const isVisible = rowText.some(text => text.includes(searchTerm));
+        row.style.display = isVisible ? '' : 'none';
+      });
+    });
+  </script>
+  
+<script type="text/javascript">
+    $(document).ready(function () {
+
+       
+        $("#myInput").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#myTable tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+});
+
+
+
+
+function populateTable(data) {
+    const tableBody = document.getElementById('table-body');
+    tableBody.innerHTML = ''; 
+    data.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.Sno}</td>
+            <td>${item.username}</td>
+            <td>${item.email}</td>
+            <td>${item.district}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+populateTable(userlist);
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+
+</body>
+
+</html> -->
+{% include 'admindashboard.html' %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.10/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.10/js/jquery.dataTables.js"></script>
+    <style>
+        @media (max-width: 767px) {
+            table.responsive {
+                width: 100%;
+                margin-bottom: 1rem;
+                background-color: transparent;
+            }
+
+            table.responsive th {
+                display: none;
+            }
+
+            table.responsive td {
+                display: block;
+                text-align: left;
+            }
+
+            table.responsive td::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+            }
+
+            table.responsive td:last-child {
+                border-bottom: 0;
+            }
+        }
+    </style>
+</head>
+
+<body class="body" style="margin-left: 250px; margin-top: 50px;">
+    <section class="conatiner">
+    <div class="container">
+        <form enctype="multipart/form-data" method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <label>Country</label>
+                    <select id="country-dropdown" class="form-control" name="country">
+                        <option value="">Select a country</option>
+                        {% for country in countries %}
+                            <option value="{{ country.pk }}" {% if country.name == "India" %}selected{% endif %}>{{ country.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <label>State</label><br>
+                    <select id="state-dropdown" class="form-control" name="state">
+                        <option value="">Select a state</option>
+                    </select>
+                </div>
+                <div class="col-lg-3 col-md-12 col-sm-12">
+                    <label>District</label>
+                    <select id="district-dropdown" class="form-control" name="district">
+                        <option value="">Select a district</option>
+                    </select>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 search_btn mt-5" align="center">
+                    <button type="submit" value="Submit" class="btn btn-outline-danger">Search</button>
+                </div>
+            </div>
+            </form>
+        
+            <!-- <div class="col-lg-12 col-md-12 col-sm-12 mt-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Search by username">
+            </div> -->
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 mt-5">
+                <table id="myTable" class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr class="text-center">
+                            <th class="sortable" data-column="Sno" scope="col">Sno</th>
+                            <th class="sortable" data-column="username" scope="col">User Name</th>
+                            <th class="sortable" data-column="email" scope="col">Email</th>
+                            <th class="sortable" data-column="district" scope="col">District</th>
+                          
+                            <th class="text-center" scope="col"> Permissions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                            {% for user in userlist %}
+                                <tr class="text-center">
+                                    <td>{{ user.id }}</td>
+                                    <td>{{ user.username }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>{{ user.userprofile.address.district }}</td>                                    <td>
+                                        <div class="row border d-flex ">
+                                            <div class="col d-flex align-items-center">
+                                                <b> Home & Aboutus</b>
+                                            </div>
+                                        <div class="col d-flex justify-content-end" style="display: flex; align-items: center;">
+                                            <div class="form-check">
+                                              
+                                            {% if user.userprofile.aread == "0" %}
+                                            <button class="btn btn-primary"><a href="/read/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Enable</a></button>
+                                            {% else %}
+                                            <button class="btn  btn-danger"><a href="/readhide/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Disable</a></button>
+                                            {% endif %}
+                                            </div>&nbsp;&nbsp;
+                                        </div>
+                                        </div>
+                                        <br>
+                                        <div class="row border">
+                                            <div class="col d-flex align-items-center">
+                                                <b>Events & Blooddonation</b>
+                                            </div>
+                                        <div class="col d-flex justify-content-end" style="display: flex; align-items: center;">
+                                            <div class="form-check">
+                                            {% if user.userprofile.awrite == "0" %}
+                                            <button class="btn btn-primary"><a href="/evebloodshow/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Enable</a></button>
+                                            {% else %}
+                                            <button class="btn  btn-danger"><a href="/evebloodhide1/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Disable</a></button>
+                                            {% endif %}
+                                            </div>&nbsp;&nbsp;
+                                        </div>
+                                        </div>
+                                        <br>
+                                        <div class="row border">
+                                            <div class="col d-flex align-items-center">
+                                                <b>Donor List</b>
+                                            </div>
+                                        <div class="col d-flex justify-content-end" style="display: flex; align-items: center;">
+                                            <div class="form-check">
+                                                
+                                            {% if user.userprofile.aupdate == "0" %}
+                                            <button class="btn btn-primary"><a href="/bloodlistshow/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Enable</a></button>
+                                            {% else %}
+                                            <button class="btn  btn-danger"><a href="/bloodlisthide/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Disable</a></button>
+                                            {% endif %}
+                                            </div>&nbsp;&nbsp;
+                                        </div>
+                                        </div>
+                                        <br>
+                                        <div class="row border">
+                                            <div class="col d-flex align-items-center">
+                                                <b>Eligibility & Gallery</b>
+                                            </div>
+                                        <div class="col d-flex justify-content-end" style="display: flex; align-items: center;">
+                                            <div class="form-check">
+                                            {% if user.userprofile.aremove == "0" %}
+                                            <button class="btn btn-primary"><a href="/gallashow/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Enable</a></button>
+                                            {% else %}
+                                            <button class="btn  btn-danger"><a href="/gallahide/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Disable</a></button>
+                                            {% endif %}
+                                            </div>&nbsp;&nbsp;
+                                        </div>
+                                        </div> <br>
+                                        <div class="row border">
+                                            <div class="col d-flex align-items-center">
+                                                <b>Contact Us</b>
+                                            </div>
+                                        <div class="col d-flex justify-content-end" style="display: flex; align-items: center;">
+                                            <div class="form-check">
+                                            {% if user.userprofile.aconta == "0" %}
+                                            <button class="btn btn-primary"><a href="/contshow/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Enable</a></button>
+                                            {% else %}
+                                        <button class="btn  btn-danger"><a href="/conthide/{{user.userprofile.id}}" style="text-decoration:none;color: white;">Disable</a></button>
+
+                                            {% endif %}
+                                            </div>&nbsp;&nbsp;
+                                        </div>
+                                        </div>
+                                        
+                                </tr>
+                                {% endfor %}
+
+                    </tbody>
+
+
+    
+                </table>
+            </div>
+    </div>
+   
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const countryDropdown = document.getElementById("country-dropdown");
+            const stateDropdown = document.getElementById("state-dropdown");
+            const districtDropdown = document.getElementById("district-dropdown");
+    
+            function populateStates(selectedCountryId) {
+                stateDropdown.innerHTML = "<option value=''>Select a state</option>";
+    
+                if (selectedCountryId) {
+                    fetch(`/get_states/${selectedCountryId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            data.states.forEach(state => {
+                                stateDropdown.insertAdjacentHTML("beforeend", `<option value="${state.pk}">${state.name}</option>`);
+                            });
+                        });
+                }
+            }
+    
+            function populateDistricts(selectedStateId) {
+                districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+    
+                if (selectedStateId) {
+                    fetch(`/get_districts/${selectedStateId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            data.districts.forEach(district => {
+                                districtDropdown.insertAdjacentHTML("beforeend", `<option value="${district.pk}">${district.name}</option>`);
+                            });
+                        });
+                }
+            }
+    
+            countryDropdown.addEventListener("change", function() {
+                const selectedCountryId = this.value;
+    
+                // Reset state and district dropdowns
+                stateDropdown.innerHTML = "<option value=''>Select a state</option>";
+                districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+    
+                populateStates(selectedCountryId);
+            });
+    
+            stateDropdown.addEventListener("change", function() {
+                const selectedStateId = this.value;
+    
+                // Reset district dropdown
+                districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+    
+                populateDistricts(selectedStateId);
+            });
+    
+            const defaultCountryId = countryDropdown.value;
+            populateStates(defaultCountryId);
+        });
+    </script>
+    
+    
+    
+    </section>
+</body>
+
+
+</html>
+
+

@@ -1,0 +1,18 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form method="post" name="payment" action="/gallahide/{{d.id}}/">{% csrf_token %}
+            <input type="hidden" name="aremove" value="0" placeholder="Payment Successful">
+            <input type="submit" name="sub">
+        </form>
+        <script>
+            window.onload=function(){
+                document.forms['payment'].submit();
+            }
+        </script>
+       
+
+    </body>
+</html>

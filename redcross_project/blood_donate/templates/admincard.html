@@ -1,0 +1,484 @@
+<html>
+
+    <head>
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/font/material-design-icons/Material-Design-Icons.woff">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+  </head>
+  <style>
+    
+    header,
+main,
+footer {
+  padding-left: 240px;
+}
+
+body {
+  background: white;
+}
+
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+}
+
+#credits li,
+#credits li a {
+  color: white;
+}
+
+#credits li a {
+  font-weight: bold;
+}
+
+.footer-copyright .container,
+.footer-copyright .container a {
+  color: #BCC2E2;
+}
+
+.fab-tip {
+  position: fixed;
+  right: 85px;
+  padding: 0px 0.5rem;
+  text-align: right;
+  background-color: #323232;
+  border-radius: 2px;
+  color: #FFF;
+  width: auto;
+}
+
+/* Add this to your existing CSS or include in a separate stylesheet */
+.dropdown-content {
+    min-width: 150px; /* Adjust the width as needed */
+    background-color: #fff; /* Background color of the dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Border radius */
+    padding: 10px; /* Padding inside the dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+.dropdown-content li {
+    padding: 5px 0;
+    margin-top: 0%;
+}
+
+.dropdown-content a {
+    color: #333; /* Link color */
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    color: #000; /* Link color on hover */
+}
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
+ * {
+	 box-sizing: border-box;
+}
+ html {
+	 min-height: 100%;
+}
+ body {
+	 height: 100%;
+	 background: #ecf0f1;
+	 font: 15px/19px 'Roboto', Arial, serif;
+	 font-weight: 400;
+}
+ ul, li {
+	 list-style: none;
+}
+ body, div, p, ul, li {
+	 margin: 0;
+	 padding: 0;
+}
+ .i-block {
+	 display: inline-block;
+}
+ .pull-left {
+	 float: left;
+}
+ .pull-right {
+	 float: right;
+}
+ .header {
+	 height: 50px;
+	 background: #34495e;
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 color: #fff;
+}
+ .profile {
+	 height: 100%;
+	 min-width: 220px;
+	 width: auto;
+	 padding: 0 10px;
+	 position: absolute;
+	 right: 0;
+	 top: 0;
+	 bottom: 0;
+	 cursor: pointer;
+	 transition: all 0.2s;
+}
+ .profile:after {
+	 content: '▾';
+	 display: inline-block;
+	 position: absolute;
+	 right: 0;
+	 top: 50%;
+	 transform: translate(-10px, -50%);
+	 transition: transform 0.2s;
+}
+ .profile:hover:after {
+	 transform: translate(-10px, -50%) rotate(180deg);
+}
+ .profile__avatar {
+	 width: 35px;
+	 height: 35px;
+	 line-height: 35px;
+	 position: relative;
+	 top: 50%;
+	 margin-top: -17.5px;
+	 background: #9b59b6;
+	 border-radius: 50%;
+	 text-align: center;
+}
+ .profile__monogram {
+	 height: 100%;
+	 width: 100%;
+	 text-transform: uppercase;
+	 font-size: 14px;
+}
+ .profile__name {
+	 height: 50px;
+	 line-height: 50px;
+	 padding: 0 20px 0 15px;
+}
+ .menu {
+	 display: block;
+	 width: 220px;
+	 transition: all 0.2s;
+	 position: absolute;
+	 right: 0;
+	 top: 50px;
+	 background: #2c3e50;
+	 color: #bfbfbf;
+}
+ .profile .menu {
+	 visibility: hidden;
+	 opacity: 0;
+	 height: 0;
+}
+ .profile:hover .menu {
+	 visibility: visible;
+	 opacity: 1;
+	 height: 180px;
+	 box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+ .profile:hover .menu .menu__item {
+	 visibility: visible;
+	 opacity: 1;
+}
+ .profile:hover .menu .menu__item:nth-child(1) {
+	 transition: opacity 0.2s 0.12s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(2) {
+	 transition: opacity 0.2s 0.16s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(3) {
+	 transition: opacity 0.2s 0.2s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(4) {
+	 transition: opacity 0.2s 0.24s, transform 0.2s;
+}
+ .menu__item {
+	 display: block;
+	 height: 45px;
+	 line-height: 45px;
+	 cursor: pointer;
+	 padding: 0 10px 0 15px;
+	 visibility: hidden;
+	 opacity: 0;
+}
+ .menu__item:hover {
+	 background: #9b59b6;
+	 color: #f2f2f2;
+	 transform: scale(1.075);
+	 box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+ 
+
+  </style>
+  <body>{% load static %}
+  
+    <ul id="slide-out" class="side-nav fixed z-depth-2">
+      <li >
+        <div class="indigo darken-2 white-text" style="height: 130px;">
+          <div class="row">
+            <img  width="200px" height="80px" src="/media/3Lifes2support-removebg-preview (1).png" class="circle responsive-img" /></center>
+  
+            
+          </div>
+        </div>
+      </li>
+
+      <!-- <p class="text-center">Hello, {{ request.user.username }}</p> -->
+
+      
+
+      <li id="dash_dashboard"><a class="waves-effect" href="#"><i class="fa fa-tachometer" aria-hidden="true"></i><b>Dashboard</b></a></li>
+  
+      <ul class="collapsible" data-collapsible="accordion">
+        <li id="dash_brands">
+          <div id="dash_brands_header" class="collapsible-header waves-effect"><i class="fa fa-home"></i><b>Home ▼</b></div>
+          <div id="dash_brands_body" class="collapsible-body">
+            <ul>
+              <li id="brands_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!">Navigation bar</a>
+              </li>
+  
+              <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!">Carousel</a>
+              </li>
+              <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Footer</a>
+              </li>
+              
+            </ul>
+          </div>
+        </li>
+       
+        <li id="dash_products">
+         
+                <a class="waves-effect" style="text-decoration: none;" href="#!"><i class="fas fa-th-large"></i><b>About Us</b></a>
+               
+              </li>
+           
+        </li>
+  
+        <li id="dash_categories">
+          
+             
+                <a class="waves-effect" style="text-decoration: none;" href="#!"><i class="fas fa-sticky-note"></i><b>Events </b></a>
+              
+        </li>
+  
+        <li id="dash_brands">
+          <div id="dash_brands_header" class="collapsible-header waves-effect"><b>Blood Donation ▼</b></div>
+          <div id="dash_brands_body" class="collapsible-body">
+            <ul>
+              <li id="brands_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!">About Blood Donation</a>
+              </li>
+  
+              <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!">Blood Types</a>
+              </li>
+              <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Types Of Blood Donation</a>
+              </li>
+              <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Donation Process</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        
+
+    <li id="dash_categories">
+          
+             
+        <a class="waves-effect" style="text-decoration: none;" href="#!"><b><i class="fas fa-sticky-note"></i>Add Donor </b></a>
+      
+</li>
+<li id="dash_categories">
+          
+             
+    <a class="waves-effect" style="text-decoration: none;" href="#!"><b><i class="fas fa-list"></i>Donor List </b></a>
+  
+</li>
+    <li id="dash_brands">
+      <div id="dash_brands_header" class="collapsible-header waves-effect"><b>Eligibility ▼</b></div>
+      <div id="dash_brands_body" class="collapsible-body">
+          <ul>
+            <li id="brands_brand">
+              <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Basic Requirements</a>
+            </li>
+
+            <li id="brands_sub_brand">
+              <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Additional Eligiblity Requirements</a>
+            </li>
+           
+          </ul>
+        </div>
+      </li>
+      <li id="dash_brands">
+        <div id="dash_brands_header" class="collapsible-header waves-effect"><b><i class="fas fa-images"></i>Gallery  ▼</b></div>
+        <div id="dash_brands_body" class="collapsible-body">
+          <ul>
+            <li id="brands_brand">
+              <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Images</a>
+            </li>
+
+            <li id="brands_sub_brand">
+              <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Videos</a>
+            </li>
+            <li id="brands_sub_brand">
+                <a class="waves-effect" style="text-decoration: none;" href="#!"></i>Announcements</a>
+              </li>
+           
+          </ul>
+        </div>
+      </li>
+      <li id="dash_categories">
+          
+             
+        <a class="waves-effect" style="text-decoration: none;" href="#!"><i class="fas fa-phone-alt"></i><b>Contact Us </b></a>
+      
+</li>
+      </ul>
+    </ul>
+    <header class="header">
+      <div class="profile">
+        <div class="profile__avatar i-block pull-left">
+          <span class="profile__monogram i-block"></span>
+        </div>
+        <div class="profile__name i-block pull-left">{{ request.user.username }}</div>
+        <ul class="menu">
+          <li><a class="menu__item" href="{% url 'admin_register' %}">Add User</a></li>
+          <li><a class="menu__item"  href="{% url 'change_password' %}">Reset Password</a></li>
+          <li><a class="menu__item" href="{% url 'logout' %}"> Log out</a></li>
+        </ul>
+      </div>
+    </header>
+      <!-- <nav class="indigo" role="navigation">
+          <div class="nav-wrapper">
+              
+              <a data-activates="slide-out" class="button-collapse show-on-" href="#!">
+                  <img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" />
+              </a>
+              
+              <ul class="right hide-on-med-and-down">
+                  <li>
+                      <a class='right dropdown-button' href='' data-activates='user_dropdown'>
+                          <i class='material-icons'>account_circle</i>
+                          <span id="logged-in-username">{{ request.user.username }}</span>
+                      </a>
+                  </li>
+              </ul>
+              
+              <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+          </div>
+      </nav>
+  </header> -->
+  
+  
+    <!-- <header>
+      <ul class="dropdown-content" id="user_dropdown">
+        <li><a class="indigo-text" href="#!">Profile</a></li>
+        <li><a class="indigo-text" href="/logout_admin/">Logout</a></li>
+      </ul>
+  
+      <nav class="indigo" role="navigation">
+        <div class="nav-wrapper">
+          <a data-activates="slide-out" class="button-collapse show-on-" href="#!"><img style="margin-top: 17px; margin-left: 5px;" src="https://res.cloudinary.com/dacg0wegv/image/upload/t_media_lib_thumb/v1463989873/smaller-main-logo_3_bm40iv.gif" /></a>
+  
+          <ul class="right hide-on-med-and-down">
+            <li>
+              <a class='right dropdown-button' href='' data-activates='user_dropdown'><i class=' material-icons'>account_circle</i></a>
+            </li>
+          </ul>
+  
+          <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+        </div>
+      </nav>
+  
+      
+    </header> -->
+  
+   
+  
+      <div class="fixed-action-btn click-to-toggle" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large pink waves-effect waves-light">
+          <i class="large material-icons">add</i>
+        </a>
+  
+        <ul>
+          <li>
+            <a class="btn-floating red"><i class="material-icons">note_add</i></a>
+            <a href="" class="btn-floating fab-tip">Add a note</a>
+          </li>
+  
+          <li>
+            <a class="btn-floating yellow darken-1"><i class="material-icons">add_a_photo</i></a>
+            <a href="" class="btn-floating fab-tip">Add a photo</a>
+          </li>
+  
+          <li>
+            <a class="btn-floating green"><i class="material-icons">alarm_add</i></a>
+            <a href="" class="btn-floating fab-tip">Add an alarm</a>
+          </li>
+  
+          <li>
+            <a class="btn-floating blue"><i class="material-icons">vpn_key</i></a>
+            <a href="" class="btn-floating fab-tip">Add a master password</a>
+          </li>
+        </ul>
+      </div>
+    </main>
+  
+    
+  </body>
+  
+  <script>
+    $('.button-collapse').sideNav();
+
+$('.collapsible').collapsible();
+
+$('select').material_select();
+
+$('.dropdown-button').dropdown({
+    inDuration: 300,
+    outDuration: 225,
+    hover: true, // Activate on hover
+    coverTrigger: false, // Displays dropdown below the button
+    alignment: 'right' // Dropdown alignment
+});
+
+$('.dropdown-trigger').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            hover: true, // Activate on hover
+            coverTrigger: false, // Displays dropdown below the button
+            alignment: 'right' // Dropdown alignment
+        });
+
+        $('.button-collapse').sideNav();
+</script>
+<script>
+  const name = 'Admin';
+let getMonogram = name => {
+const words = name.toUpperCase().split(' ');
+let result = '';
+words.forEach(value => {
+  result += value[0];
+});
+return result;
+};
+const monogram = getMonogram(name);
+$('.profile__monogram').text(monogram);
+$('.profile__name').text(name);
+</script>
+  
+  </html>

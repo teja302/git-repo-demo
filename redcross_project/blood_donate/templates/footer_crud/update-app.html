@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit App</title>
+</head>
+<body>
+    <h1>Edit App</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="heading">Heading:</label>
+        <input type="text" id="heading" name="heading" value="{{ app.heading }}"><br>
+        <label for="app">App Image:</label>
+        <input type="file" id="app" name="app"><br>
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" value="{{ app.url }}"><br>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

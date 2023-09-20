@@ -1,0 +1,49 @@
+<!-- create.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New AppFooter</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Create New AppFooter</h1>
+    <form action="{% url 'create' %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+        <label for="url">URL:</label>
+        <input type="text" name="url" required>
+        <label for="icon">Icon:</label>
+        <input type="text" name="icon" required>
+        <label for="heading">Heading:</label>
+        <input type="text" name="heading">
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>

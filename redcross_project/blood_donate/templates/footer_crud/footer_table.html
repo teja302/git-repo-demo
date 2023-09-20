@@ -1,0 +1,273 @@
+
+{% include 'admindashboard.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Tables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+
+
+<style>
+  
+   table {
+            border: 6px solid rgb(124, 44, 44);
+            width: 80%;
+            margin: auto;
+        }
+        
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        
+        h3 {
+            font-size: 10px;
+            margin: 0;
+            padding: 10px;
+        }
+        
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+        
+        td {
+            border: 2px solid brown;
+          
+        }
+        th,td {
+            border: 2px solid brown;
+            
+        }
+        th{
+          background-color: black;
+          color: aliceblue;
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        a{
+          border-radius: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            img{
+              height: auto;
+            }
+        }
+</style>
+</head>
+<body>
+  <div class="table-responsive" style="margin-left: 230px;">
+    <h2 align="center" style="margin-top: 50px;">Social Icons</h2>
+    <a href="/blood_carousel_img_form/" class="btn btn-primary" style="margin-left: 230px;" >Add New Carsouel</a>  <br><br>
+
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr align="center">
+      <th>Url1</th>
+     
+      <th>Icon1</th>
+      <th>Update</th><th>Delete</th></tr>
+    </thead>
+    <tbody>
+      {% for i in post %}
+      <tr>
+        <td><center>{{i.url1}} </center></td> 
+        
+        <td><center><img src="{{i.icon1.url}}"></center></td>  
+        <td><a href="/basic_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:35px;"></a></td>
+         
+        <td><a href="/basic_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:35px;"></i></a></td>
+     
+     
+      </tr>
+      {% endfor %} 
+    </tbody><br>
+    </table></div>
+    <div class="table-responsive" style="margin-left: 230px;">
+      <h2 align="center" style="margin-top: 50px;">Footer Data</h2>
+      
+      <table class="table table-striped" id="myTable">
+    <tr align="center">
+
+      <th>Name</th>
+     
+      <th>Url</th>
+            <th>Icon</th>
+
+                  <th>Heading</th>
+
+      <th>Update</th><th>Delete</th></tr>
+    </thead>
+    <tbody>
+      {% for i in p %}
+      <tr>
+        <td><center>{{i.name}} </center></td> 
+        <td><center>{{i.url}} </center></td> 
+
+        <td><center>{{i.icon}} </center></td> 
+
+        <td><center>{{i.heading}} </center></td> 
+
+        
+
+        <td><a href="/social_icon/update{{i.pk}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:35px;"></a></td>
+         
+          <td><a href="/social_icon/delete{{i.pk}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:35px;"></i></a></td>
+       
+    
+      </tr>
+      {% endfor %} 
+    </tbody>
+      </table></div>
+    <div class="table-responsive" style="margin-left: 230px;">
+      <h2 align="center" style="margin-top: 50px;">Create New Item</h2>
+      
+      <table class="table table-striped" id="myTable">
+    <tr align="center">
+             
+   
+ 
+      <th>Name</th>
+     
+      <th>Url</th>
+            <th>Icon</th>
+
+                  <th>Heading</th>
+
+      <th>Update</th><th>Delete</th></tr>
+    </thead>
+    <tbody>
+      {% for i in p1 %}
+      <tr>
+        <td><center>{{i.name}} </center></td> 
+        <td><center>{{i.url}} </center></td> 
+
+        <td><center>{{i.icon}} </center></td> 
+
+        <td><center>{{i.heading}} </center></td> 
+
+        <td><a href="/basic_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:35px;"></a></td>
+         
+          <td><a href="/basic_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:35px;"></i></a></td>
+       
+
+         
+    
+      </tr>
+      {% endfor %} 
+</tbody>
+      </table></div>
+<div class="table-responsive" style="margin-left: 230px;">
+  <h2 align="center" style="margin-top: 50px;">Footer Data</h2>
+  
+  <table class="table table-striped" id="myTable">
+      <tr align="center">
+             
+   
+ 
+        <th>App</th>
+       
+        <th>Url</th>
+          
+  
+                    <th>Heading</th>
+  
+        <th>Update</th><th>Delete</th></tr>
+      </thead>
+      <tbody>
+        {% for i in p2 %}
+        <tr>
+          <td><center><img src="{{i.app.url}}"></center></td> 
+          <td><center>{{i.url}} </center></td> 
+  
+  
+          <td><center>{{i.heading}} </center></td> 
+  
+          
+  
+          <td><a href="/basic_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:35px;"></a></td>
+         
+            <td><a href="/basic_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:35px;"></i></a></td>
+         
+      
+        </tr>
+        {% endfor %} 
+        </tbody>
+    
+             
+      </tbody>
+  </table></div>
+      <div class="table-responsive" style="margin-left: 230px;">
+        <h2 align="center" style="margin-top: 50px;">Footer Data</h2>
+        
+        <table class="table table-striped" id="myTable">
+      <tr align="center">
+             
+   
+        <th>Heading</th>
+        <th>Address</th>
+       
+        <th>Email</th>
+          
+  
+                   
+  
+        <th>Update</th><th>Delete</th></tr>
+      </thead>
+      <tbody>
+        {% for i in p3 %}
+        <tr>
+          <td>{{i.heading}}</td>
+          <td><center>{{i.address}}</center></td> 
+         
+  
+  
+          <td><center>{{i.email}} </center></td> 
+  
+          
+          <td><a href="/basic_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:35px;"></a></td>
+         
+            <td><a href="/basic_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:35px;"></i></a></td>
+         
+           
+      
+        </tr>
+        {% endfor %} 
+        </tbody>
+
+    </table>
+</div>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+</body>
+</html>
+{% endblock %}

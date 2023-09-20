@@ -1,0 +1,182 @@
+{% include 'admindashboard.html' %}
+
+{% block content %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-bottom: 20px;
+}
+
+table th,
+table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
+
+/* Pagination styles */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.pagination li {
+    margin-right: 5px;
+}
+
+.pagination a,
+.pagination span {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.pagination .active a,
+.pagination .active span {
+    background-color: #333;
+    color: #fff;
+}
+
+.pagination .disabled a,
+.pagination .disabled span {
+    cursor: not-allowed;
+    color: #ccc;
+    background-color: #f2f2f2;
+}
+
+</style>
+<style>
+    .icon-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  }
+  
+  /* Style the Font Awesome icon using :before pseudo-element */
+  .icon-container:before {
+  content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-size: 24px;
+  color: #3498db;
+  margin-right: 10px;
+  }
+  
+  /* Hide the hover text by default */
+  .hover-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color:red;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+  width:150px;
+  }
+  
+  /* Display the hover text when hovering over the icon container */
+  .icon-container:hover .hover-text {
+  display: block;
+  }
+  </style>                  
+
+<!-- Dashboard-specific content here -->
+<div class="table-responsive" style="margin-left: 230px;">
+    <h2 align="center" style="margin-top: 25px;">Images Data</h2>
+    <a href="/insertphoto/" class="btn btn-primary">Add New Images</a><br><br>
+
+    <table class="table" id="myTable" style="width:1120px">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through video data -->
+            {% for i in images %}
+            <tr>
+                <td style="width:500px">
+                  <img src="{{i.image_file.url}}"  alt="" style="width: 300px;height: 200px;">
+
+                </td>
+                {% if user_profile.aremove == "1" %}                        
+                <td style="width:500px">
+                    <div class="icon-container">
+                    <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+                    <span class="hover-text"><b>Permission Required</b></span>
+
+                </div>
+                </td>
+                <td style="width:500px">
+                    <div class="icon-container">
+                    <i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></i>
+                    <span class="hover-text"><b>Permission Required</b></span>
+
+                    </div>
+                    </td>
+                    {% else %}
+                    <td style="width:500px"><a href="/photo_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+                    <td style="width:500px"> <a href="/photo_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></a></td>
+                        {% endif %}
+             
+            
+          
+               
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+   <!-- Pagination -->
+
+
+</div>
+</div>
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable({
+            "pagingType": "full_numbers", // Use a specific pagination style
+            "pageLength": 10, // Number of rows per page
+            // Add more options as needed
+        });
+    });
+</script>
+{% endblock %}
+
+   

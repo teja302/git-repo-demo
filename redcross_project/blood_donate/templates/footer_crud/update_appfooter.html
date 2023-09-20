@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit AppFooter</title>
+</head>
+<body>
+    <h1>Edit AppFooter</h1>
+    <form action="{% url 'update_appfooter' appfooters.id %}" method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ appfooters.name }}" required>
+        <label for="url">URL:</label>
+        <input type="text" name="url" value="{{ appfooters.url }}" required>
+        <label for="icon">Icon:</label>
+        <input type="text" name="icon" value="{{ appfooters.icon }}" required>
+        <label for="heading">Heading:</label>
+        <input type="text" name="heading" value="{{ appfooters.heading }}">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

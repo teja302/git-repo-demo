@@ -1,0 +1,199 @@
+{% include 'admindashboard.html' %}
+
+{% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<style>
+/* Table styles. */
+td,
+th {
+    text-align: left;
+    padding: .5rem 1rem;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ccc;
+}
+
+th {
+    background: #444;
+    color: #fff;
+}
+
+/* Pagination. */
+.pagination {
+    background: #333;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    padding: .5rem 1rem;
+}
+
+#numbers {
+    padding: 0;
+    margin: 0 2rem;
+    list-style-type: none;
+    display: flex;
+}
+
+#numbers li a {
+    color: #fff;
+    padding: .5rem 1rem;
+    text-decoration: none;
+    opacity: .7;
+}
+
+#numbers li a:hover {
+    opacity: 1;
+}
+
+#numbers li a.active {
+    opacity: 1;
+    background: #fff;
+    color: #333;
+}
+</style>
+<style>
+    .icon-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  }
+  
+  /* Style the Font Awesome icon using :before pseudo-element */
+  .icon-container:before {
+  content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-size: 24px;
+  color: #3498db;
+  margin-right: 10px;
+  }
+  
+  /* Hide the hover text by default */
+  .hover-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color:red;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+  width:150px;
+  }
+  
+  /* Display the hover text when hovering over the icon container */
+  .icon-container:hover .hover-text {
+  display: block;
+  }
+  </style>                  
+<!-- Dashboard-specific content here -->
+<div class="table-responsive" style="margin-left: 230px;">
+    <h2 align="center" style="color:#333">Videos Data</h2>
+    <a href="/insertvideo/" class="btn btn-primary">Add New Videos</a><br><br>
+    <div class="text-center">
+        <ul class="pagination" id="numbers"></ul>
+    </div><br>
+    <table class="table" id="myTable">
+        <thead>
+            <tr align="center">
+                <th>Video</th>
+
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through video data -->
+            {% for i in q %}
+            <tr>
+                <td>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="{{i.video_url}}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </td>
+                {% if user_profile.aremove == "1" %}                        
+                <td>
+                    <div class="icon-container">
+                        <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+                        <span class="hover-text"><b>Permission Required</b></span>
+
+                    </div>
+
+                </td>
+                <td>
+                <div class="icon-container">
+                    <i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;">
+                        <span class="hover-text"><b>Permission Required</b></span>
+
+                    </div>
+                </td>
+
+                {% else %}
+                <td><a href="/video_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+
+                <td><a href="/video_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></a></td>
+
+                </td>
+                {% endif %}
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination">
+        <ol id="numbers"></ol>
+    </div>
+
+</div>
+<script>
+    $(function() {
+        const rowsPerPage = 6;
+        const rows = $('#myTable tbody tr');
+        const rowsCount = rows.length;
+        const pageCount = Math.ceil(rowsCount / rowsPerPage); // avoid decimals
+        const numbers = $('#numbers');
+
+        // Generate the pagination.
+        for (var i = 0; i < pageCount; i++) {
+            numbers.append('<li><a href="#">' + (i + 1) + '</a></li>');
+        }
+
+        // Mark the first page link as active.
+        $('#numbers li:first-child a').addClass('active');
+
+        // Display the first set of rows.
+        displayRows(1);
+
+        // On pagination click.
+        $('#numbers li a').click(function(e) {
+            var $this = $(this);
+
+            e.preventDefault();
+
+            // Remove the active class from the links.
+            $('#numbers li a').removeClass('active');
+
+            // Add the active class to the current link.
+            $this.addClass('active');
+
+            // Show the rows corresponding to the clicked page ID.
+            displayRows($this.text());
+        });
+
+        // Function that displays rows for a specific page.
+        function displayRows(index) {
+            var start = (index - 1) * rowsPerPage;
+            var end = start + rowsPerPage;
+
+            // Hide all rows.
+            rows.hide();
+
+            // Show the proper rows for this page.
+            rows.slice(start, end).show();
+        }
+    });
+</script>
+{% endblock %}

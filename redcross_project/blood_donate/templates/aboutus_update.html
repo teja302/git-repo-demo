@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container-fluid">  
+      <div class="row justify-content-center">
+          <div class="col-md-8">
+              <h1 class="text-center mb-4 ">Update About Us</h1>
+              <form method="post" enctype="multipart/form-data" action="/aboutus_update/{{post.id}}" class="border rounded p-4" style="background: linear-gradient(to bottom, #5c4abe, #ddd3c7); background-clip: padding-box;">
+                  {% csrf_token %}
+                  
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="heading" style="font-weight: bold;"  class="form-label">Heading</label>
+                          <input type="text" id="heading" name="heading" class="form-control" value="{{post.heading}}" style="background-image: linear-gradient(to bottom, #ffffff, #f0f0f0);">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="subtitle1" style="font-weight: bold;"  class="form-label">Subtitle 1</label>
+                          <input type="text" class="form-control" name="subtitle1" placeholder="Subtitle 1" value="{{post.subtitle1}}" style="background-image: linear-gradient(to bottom, #ffffff, #f0f0f0);">
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="subtitle2" style="font-weight: bold;"  class="form-label">Subtitle 2</label>
+                          <input type="text" class="form-control" name="subtitle2" placeholder="Subtitle 2" value="{{post.subtitle2}}">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="content1" style="font-weight: bold;"  class="form-label">Content 1</label>
+                          <input type="text" name="content1" class="form-control" placeholder="Content 1" value="{{post.content1}}">
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="content2" style="font-weight: bold;"  class="form-label">Content 2</label>
+                          <input type="text" name="content2" class="form-control" placeholder="Content 2" value="{{post.content2}}">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="content3" style="font-weight: bold;"  class="form-label">Content 3</label>
+                          <input type="text" name="content3" class="form-control" placeholder="Content 3" value="{{post.content3}}">
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="content4" style="font-weight: bold;"  class="form-label">Content 4</label>
+                          <input type="text" name="content4" class="form-control" placeholder="Content 4" value="{{post.content4}}">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="content5" style="font-weight: bold;"  class="form-label">Content 5</label>
+                          <input type="text" name="content5" class="form-control" placeholder="Content 5" value="{{post.content5}}">
+                      </div>
+                  </div>
+                  <div class="row mb-3">
+                      <div class="col-md-6">
+                          <label for="image1" style="font-weight: bold;"  class="form-label">Image 1</label>
+                          <input type="file" name="image1" class="form-control">
+                      </div> 
+                      <div class="col-md-6">
+                          <label for="image2" style="font-weight: bold;"  class="form-label">Image 2</label>
+                          <input type="file" name="image2" class="form-control">
+                      </div>
+                  </div>
+                  <div class="text-center">
+                      <button type="submit" class="btn btn-primary">UPDATE</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</body>
+</html>

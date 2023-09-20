@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        {% csrf_token %}
+    <table class="table table-bordered " border="2">
+        <tr>
+            <th>Donor name</th>
+            <th>Hospital</th>
+            <th>Donation date</th>
+            <th>Image</th>
+        </tr>
+        {% for d in lastforms %}
+        <tr>
+            <td>{{d.donor}}</td>
+            <td>{{d.hospital_name}}</td>
+            <td>{{d.donation_date}}</td>
+            <td>
+                <form id="imageForm" method="post"  action="{% url 'save_image' %}">
+                        {% csrf_token %}
+                <img src="{{d.uploade_image.url}}" alt="">
+                <input type="checkbox" name="selected_image" value="{{d.uploade_image}}" onchange="submitForm(this)"  {% if d.uploade_image.url in saved_image_urls %}checked{% endif %}>
+                <input type="hidden" name="image_title" value="{{d.uploade_image}}">
+                <button type="submit" style="display:none;"></button>         
+                </form> 
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <script>
+        function submitForm(checkbox) {
+            if (checkbox.checked) {
+                // Checkbox is checked, submit the form
+                checkbox.form.querySelector('button[type="submit"]').click();
+            } else {
+                // Checkbox is not checked, you can handle this case if needed
+                alert('Checkbox is not checked.');
+            }
+        }
+    </script>
+</body>
+</html>

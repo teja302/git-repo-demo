@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Social Icon</title>
+</head>
+<body>
+    <h1>Update Social Icon</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="icon">Icon:</label>
+        <input type="file" name="icon1">
+        <label for="url">URL:</label>
+        <input type="text" name="url1" value="{{ icon.url1 }}" required>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

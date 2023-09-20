@@ -1,0 +1,227 @@
+
+{% include 'admindashboard.html'%}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donor Verified</title>
+    
+    <style>
+        html body {
+        font-family: Arial, sans-serif;
+       margin-right: 100px;
+        /* background-color: #16d25e;  */
+    }
+        
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+        }
+        
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #f2f2f2;
+            /* margin-top: 20px; */
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #333;
+            color: white;
+        }
+        
+    
+        
+        
+        div.dataTables_wrapper input[type="search"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        
+        
+        
+        
+        .paginate_button:hover {
+            background-color: #f2f2f2;
+        }
+        
+        .paginate_button.current {
+            background-color: #333;
+            color: white;
+        }
+        
+        
+        td {
+            word-break: break;
+        }
+        .btn{
+            text-align: center;
+        }
+       
+        .hidden-row {
+    display: none;
+}
+    </style>
+
+<style>
+    .icon-container {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+/* Style the Font Awesome icon using :before pseudo-element */
+.icon-container:before {
+content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+font-family: 'Font Awesome 5 Free';
+font-size: 24px;
+color: #3498db;
+margin-right: 10px;
+}
+
+/* Hide the hover text by default */
+.hover-text {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color:red;
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+z-index: 1;
+width:150px;
+}
+
+/* Display the hover text when hovering over the icon container */
+.icon-container:hover .hover-text {
+display: block;
+}
+
+
+</style>
+    
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  
+    
+<h1 style="margin-top: 40px;">Donor Information</h1>
+<div class="container">
+    <div class="row">
+       
+        <div class="col-md-2 text-right" style="margin-left: 1100px;">
+            <a href="/table-to-excel" class="btn btn-success"><i class="fa fa-download"></i> Export</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- <div class="navbar" style="margin-left: 1170px;">
+    <center><button class="btn"><i class="fa fa-download"></i><a href="/table-to-excel">Download</a></button></center>
+</div> -->
+   <section class="home-section"></section>
+<div class="container" style="margin-left: 220px;">
+    <!-- <div class="row" style="margin-left: 1170px;">
+        <button class="btn"><i class="fa fa-download"></i><a href="/table-to-excel">Download</a></button>
+    </div> -->
+    <table id="example" class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Fullname</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Blood Group</th>
+                <th>Aadharnumber</th>
+                <th>Phonenumber</th>
+                <th>Email</th>
+                <th>Username</th>
+                <th>Address</th>
+                
+                <!-- <th>Otp</th> -->
+                <th>Delete</th>
+                <th>Hide</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for donor_data in donor_data %}
+            <tr data-row-id="{{ donor_data.id }}">
+                <td>{{ donor_data.fullname }}</td>
+                <td>{{ donor_data.gender }}</td>
+                <td>{{ donor_data.age }}</td>
+                <td>{{ donor_data.bloodgroup }}</td>
+                <td>{{ donor_data.aadhar }}</td>
+                <td>{{ donor_data.phone_number }}</td>
+                <td>{{ donor_data.email }}</td>
+                <td>{{ donor_data.user.username }}</td>
+                <td>{{ donor_data.address.country.name }} <br>{{ donor_data.address.state.name }} <br> {{ donor_data.address.district.name }} <br>{{ donor_data.address.city.name }} </td> </td>
+              
+                <!-- <td> {{ donor_data.otp }}</td> -->
+               
+               
+                    {% if user_profile.aupdate == "1" %}     
+                    <td>
+                   <div class="icon-container">
+                    <i class="fa fa-trash" aria-hidden="true" style="color: red; font-size:20px;"> </i>
+                    <span class="hover-text"><b>Permission Required</b></span>
+                </div>
+                    </td> 
+                    <td>                                  
+                    {% if donor_data.in_hidden == 0 %}
+                   <b style="color:red">Permission Required</b>
+
+                    {% else %}
+                    <b style="color:red">Permission Required</b>
+
+                    {% endif %}
+                </td>
+                    {% else %}
+                    <td>
+                        <a href="{% url 'registerdelete' donor_data.id %}" onclick="return confirm('Are you sure you want to delete this donor?')">
+                            <i class="fa fa-trash" aria-hidden="true" style="color: red; font-size:20px;"> </i>
+                        </a>
+                    </td> 
+                    <td>
+                    {% if donor_data.in_hidden == 0 %}
+                    <a href="/hidedonor/{{donor_data.id}}/"> <button style="background-color: #ff0000; color: white;">hide</button></a>
+                     {% else %}
+                     <a href="/showdonor/{{donor_data.id}}/"><button style="background-color: #009900; color: white;">show</button></a>
+                     {% endif %}
+                    </td>
+                     {% endif %}
+
+            </tr>
+           
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        });
+    });
+</script>
+
+</body>
+</html>
+{% endblock %}

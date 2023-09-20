@@ -1,0 +1,364 @@
+
+<html>
+    <head>
+        <title>login page</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script> -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+          /* border-radius: 25px; */
+        
+        }
+        .error-message {
+          color: red;
+          font-size: 14px;
+          margin-top: 5px;
+          display: none;
+        }
+        h2{
+            color: #0a0a0a;
+            text-align: center;
+        }
+        .wrapper {
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+            margin: 10% auto;
+            border-radius: 25px;
+          
+        }
+         form {
+          padding: 30px;
+          
+         }
+         .form-group {
+          height: 55px;
+          width: 100%;
+          margin-top: 20px;
+          position: relative;
+        
+        }
+         .form-group input {
+          height: 0%;
+          width: 100%;
+          font-size: 16px;
+          padding-top: 9px;
+          padding-left: 20px;
+          border: 1px solid rgb(15, 14, 14); 
+          transition: all 0.3s ease;
+          border-radius: 10px;
+         }
+       
+        
+        form .signup-link {
+          color: #262626;
+          margin-top: 20px;
+          text-align: center;
+        }
+    
+        form .pass-link a,
+        form .signup-link a {
+          color: #4158d0;
+          text-decoration: none;
+        }
+    
+         form .pass-link a:hover,
+        form .signup-link a:hover {
+          text-decoration: underline;
+        } 
+    
+        .input-group:focus{
+                    outline: none;
+                }
+    
+        .field-icon {
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          transform: translateY(-50%);
+          color: #999999;
+          pointer-events: none;
+        }
+      
+    body {
+        margin: 10px;
+        font-family: Arial, sans-serif;
+        
+    }
+
+    
+    .navbar a:hover {
+        background-color: #ddd;
+        color: black;
+        border-radius: none;
+    }
+    
+    .navbar a.active {
+
+        color: white;
+    }
+    .login-container {
+        float: right;
+        margin-right: 5px;
+        padding-left: 1200px;
+    }
+    
+    .login-container button {
+        margin-top: 8px;
+    }
+    
+    .popup {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+   
+    
+    .popup-content {
+        background-color:rgb(243, 194, 194);
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            height: 500px;
+            border-radius: 20px;
+    }
+    @media screen and (max-width: 600px)  {
+        .popup-content {
+        max-width: 350px;
+        }
+    }
+
+    
+    .close {
+        color: #131212;
+        float: right;
+        font-size: 28px;
+        /* font-weight: bold; */
+        cursor: pointer;
+        top: 50px;
+        right: 0px;
+    }
+    
+    .register-link {
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    .register-link a {
+        color: #f50e1a;
+        text-decoration: none;
+    }
+    
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+    .a{
+        text-align: center;
+    }
+        
+   
+    
+    form .button input {
+      width: 100%;
+      background-color: rgb(243, 15, 53);
+      margin-top:40px ;
+      height: 40px;
+      margin-left: 2px; 
+      border: none;
+      border-radius: 15px;
+      font-size: 15px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      color:white;
+    }
+    .btn:focus{
+      outline: none;
+    }
+    .about{
+      margin-right: 10px;
+      padding-left: 5px;
+    }  
+    .image-content p {
+        margin: 0; /* Remove default paragraph margin */
+        padding: 0; /* Remove default paragraph padding */
+        line-height: 1.8; /* Set line-height for better readability */
+    }
+    .image-content p b{
+        font-size: 60px;
+        font-style: normal;
+        left: 10%;
+    }
+    .enquire-button {
+        position: absolute;
+        top: 100px;
+        right: 70px;
+    }
+
+
+    button {
+        padding: 10px 20px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        height: 50px;
+        font-size: 16px;
+        width: 110px;
+    }
+
+    button:hover {
+        background-color: #2980b9;
+    }
+    .a{
+        padding-top: 10px;
+        padding-left: 2px;
+    }
+
+    
+
+.toggle-password {
+    position: relative;
+    right: 0px; /* Adjust the distance from the right */
+    cursor: pointer;
+    background-color: #a69191; /* Light background color for the icon */
+    padding: 8px; /* Adjust padding for the icon background */
+    border-radius: 0 5px 5px 0; /* Rounded corners on the right side */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+
+}
+.toggle-password.revealed {
+    background-color: #85e580; /* Change background color to white when revealed */
+}
+/* Style for the error message (if needed) */
+.error-message {
+    color: red;
+    margin-top: 5px;
+}
+
+
+
+
+    </style>
+    <body>  
+        <!-- {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}     -->
+      
+    </header>
+    <div class="wrapper">
+        <div id="loginPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closeLogin">&times;</span>
+                <h3 class="a">Donor Login</h3>
+                <form method="POST" id="login-form"  action="{% url 'donor_login' %}">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-top: -12px;">
+                        <label for="uname">Username</label>
+                        <div class="input-group">
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group mt-5">
+                        <label for="pwd">Password</label>
+                        <div class="input-group">
+                            <input type="password" name="password" id="password" class="form-control">
+                            <span id="togglePassword" class="toggle-password">
+                                <i class="fa fa-eye"></i>
+                            </span>
+                            <script>
+                                var passwordInput = document.getElementById("password");
+            var togglePassword = document.getElementById("togglePassword");
+
+            togglePassword.addEventListener("click", function() {
+                if (passwordInput.type === "password") {
+                    passwordInput.type = "text";
+                    togglePassword.classList.add("revealed"); // Add a class for revealed state
+
+                } else {
+                    passwordInput.type = "password";
+                    togglePassword.classList.remove("revealed"); // Remove the class for hidden state
+                }
+            }); 
+            </script>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="error-message" class="alert bg-danger"  style="display: none;"></div>
+
+                    <div class="pass-link">
+                        <a href="{% url 'donor_forget_password' %}" class="text">Forgot Password?</a>
+                    </div>
+                    <br>
+                    <div class="button center">
+                        <button type="button" id="loginButton">Login</button>
+                    </div>
+                    <p class="register-link">Don't have an account? <a href="{% url 'donor_register' %}" id="signupLink">Register</a></p>
+                </form>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                document.getElementById("showLogin").addEventListener("click", function () {
+                    document.getElementById("loginPopup").style.display = "block";
+                });
+    
+                document.getElementById("closeLogin").addEventListener("click", function () {
+                    document.getElementById("loginPopup").style.display = "none";
+                });
+    
+                document.getElementById("loginButton").addEventListener("click", function () {
+                    // Get the form data
+                    const username = document.getElementById("username").value;
+                    const password = document.getElementById("password").value;
+    
+                    // Send an AJAX request to your login view
+                    const xhr = new XMLHttpRequest();
+                    xhr.open("POST", "{% url 'donor_login' %}", true);
+                    xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+                    xhr.onload = function () {
+                        if (xhr.status === 200) {
+                            // Successful login, you can redirect the user or perform actions
+                            window.location.reload(); // For example, reload the page
+                        } else if (xhr.status === 401) {
+                            // Unauthorized - Incorrect credentials
+                            document.getElementById("error-message").textContent = "Incorrect username or password";
+                            document.getElementById("error-message").style.display = "block";
+                        }
+                    };
+    
+                    // Send the POST data
+                    xhr.send(`username=${username}&password=${password}`);
+                });
+            });
+        </script>
+    </div>
+    
+
+    </body>
+</html>
+

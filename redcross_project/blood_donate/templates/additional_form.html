@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>additional</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background:  #93A5CF;
+            color: #fff;
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #ff5a5f;
+            border: none;
+        }
+        .btn-submit:hover {
+            background-color: #e6454e;
+        }
+        .custom-file-input:lang(en)~.custom-file-label::after {
+            content: "Browse";
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container mt-5">
+        <h2 align="center">Additional Requirements Form</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        
+            <div class="form-group row">
+                <label for="heading" class="col-sm-3 col-form-label">Heading</label>
+                <div class="col-sm-9">
+                    <input type="text" id="content" name="heading" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="point1" class="col-sm-3 col-form-label">Point1</label>
+                <div class="col-sm-9">
+                    <input type="text" id="content" name="point1" class="form-control" required>
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                <label for="point2" class="col-sm-3 col-form-label">Point2</label>
+                <div class="col-sm-9">
+                    <input type="text" id="content" name="point2" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="point3" class="col-sm-3 col-form-label">Point3</label>
+                <div class="col-sm-9">
+                    <input type="text" id="content" name="point3" class="form-control" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="point4" class="col-sm-3 col-form-label">Point4</label>
+                <div class="col-sm-9">
+                    <input type="text" id="content" name="point4" class="form-control" required>
+                </div> 
+            </div>
+            <div class="form-group row">
+                    <label for="point5" class="col-sm-3 col-form-label">Point5</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="content" name="point5" class="form-control" required>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <label for="point6" class="col-sm-3 col-form-label">Point6</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="content" name="point6" class="form-control" required>
+                    </div>
+            </div>
+            <div class="form-group row">
+                    <label for="point7" class="col-sm-3 col-form-label">Point7</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="content" name="point7" class="form-control" required>
+                    </div>
+            </div>
+            <div class="form-group row">
+                        <label for="point8" class="col-sm-3 col-form-label">Point8</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="content" name="point8" class="form-control" required>
+                        </div>
+             </div>
+            <div class="form-group row">
+                        <label for="point9" class="col-sm-3 col-form-label">Point9</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="content" name="point9" class="form-control" required>
+                        </div>
+            </div>
+            <div class="form-group row">
+                <label for="image" class="col-sm-3 col-form-label">Image</label>
+                <div class="col-sm-9">
+                    <input type="file" id="content" name="image" class="form-control" required>
+                </div>
+            <div class="form-group row">
+                <label for="image1" class="col-sm-3 col-form-label">Image1</label>
+                <div class="col-sm-9">
+                    <input type="file" id="content" name="image1" class="form-control" required>
+                </div>
+               
+                
+            </div>
+          
+            <center><button type="submit" class="btn btn-submit text-white">Submit</button></center>
+        </form>
+    </div>
+</body>
+</html>

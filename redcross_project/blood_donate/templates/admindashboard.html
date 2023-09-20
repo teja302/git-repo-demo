@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+    <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/font/material-design-icons/Material-Design-Icons.woff">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+ 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+<style>
+    
+   *{
+    header,
+main,
+footer {
+  padding-left: 240px;
+}}
+
+body {
+  background: white;
+  margin-left: 50px;
+}
+@media (max-width: 768px) {
+  left-menu{
+    padding-left: 230px;
+    margin-left: 40px;
+
+  }
+  toggle{
+    margin-left: 30px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  header,
+  main,
+  footer {
+    padding-left: 0;
+  }
+}
+
+#credits li,
+#credits li a {
+  color: white;
+}
+
+#credits li a {
+  font-weight: bold;
+}
+
+.footer-copyright .container,
+.footer-copyright .container a {
+  color: #BCC2E2;
+}
+
+.fab-tip {
+  position: fixed;
+  right: 85px;
+  padding: 0px 0.5rem;
+  text-align: right;
+  background-color: #323232;
+  border-radius: 2px;
+  color: #FFF;
+  width: auto;
+}
+
+/* Add this to your existing CSS or include in a separate stylesheet */
+.dropdown-content {
+    min-width: 150px; /* Adjust the width as needed */
+    background-color: #fff; /* Background color of the dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Border radius */
+    padding: 10px; /* Padding inside the dropdown */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Box shadow */
+}
+
+.dropdown-content li {
+    padding: 5px 0;
+    margin-top: 0%;
+}
+
+.dropdown-content a {
+    color: #333; /* Link color */
+    text-decoration: none;
+}
+
+.dropdown-content a:hover {
+    color: #000; /* Link color on hover */
+}
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900&subset=latin,latin-ext);
+ * {
+	 box-sizing: border-box;
+}
+ html {
+	 min-height: 100%;
+}
+ body {
+	 height: 100%;
+	 background: #ecf0f1;
+	 font: 15px/19px 'Roboto', Arial, serif;
+	 font-weight: 400;
+}
+ ul, li {
+	 list-style: none;
+}
+ body, div, p, ul, li {
+	 margin: 0;
+	 padding: 0;
+}
+ .i-block {
+	 display: inline-block;
+}
+ .pull-left {
+	 float: left;
+}
+ .pull-right {
+	 float: right;
+}
+ .header {
+	 height: 50px;
+	 background: #34495e;
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 right: 0;
+	 color: #fff;
+}
+ .profile {
+	 height: 100%;
+	 min-width: 220px;
+	 width: auto;
+	 padding: 0 10px;
+	 position: absolute;
+	 right: 0;
+	 top: 0;
+	 bottom: 0;
+	 cursor: pointer;
+	 transition: all 0.2s;
+}
+ .profile:after {
+	 content: '▾';
+	 display: inline-block;
+	 position: absolute;
+	 right: 0;
+	 top: 50%;
+	 transform: translate(-10px, -50%);
+	 transition: transform 0.2s;
+}
+ .profile:hover:after {
+	 transform: translate(-10px, -50%) rotate(180deg);
+}
+ .profile__avatar {
+	 width: 35px;
+	 height: 35px;
+	 line-height: 35px;
+	 position: relative;
+	 top: 50%;
+	 margin-top: -17.5px;
+	 background: #9b59b6;
+	 border-radius: 50%;
+	 text-align: center;
+}
+ .profile__monogram {
+	 height: 100%;
+	 width: 100%;
+	 text-transform: uppercase;
+	 font-size: 14px;
+}
+ .profile__name {
+	 height: 50px;
+	 line-height: 50px;
+	 padding: 0 20px 0 15px;
+}
+ .menu {
+	 display: block;
+	 width: 220px;
+	 transition: all 0.2s;
+	 position: absolute;
+	 right: 0;
+	 top: 50px;
+	 background: #2c3e50;
+	 color: #bfbfbf;
+}
+ .profile .menu {
+	 visibility: hidden;
+	 opacity: 0;
+	 height: 0;
+}
+ .profile:hover .menu {
+	 visibility: visible;
+	 opacity: 1;
+	 height: 180px;
+	 box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+}
+ .profile:hover .menu .menu__item {
+	 visibility: visible;
+	 opacity: 1;
+}
+ .profile:hover .menu .menu__item:nth-child(1) {
+	 transition: opacity 0.2s 0.12s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(2) {
+	 transition: opacity 0.2s 0.16s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(3) {
+	 transition: opacity 0.2s 0.2s, transform 0.2s;
+}
+ .profile:hover .menu .menu__item:nth-child(4) {
+	 transition: opacity 0.2s 0.24s, transform 0.2s;
+}
+ .menu__item {
+	 display: block;
+	 height: 45px;
+	 line-height: 45px;
+	 cursor: pointer;
+	 padding: 0 10px 0 15px;
+	 visibility: hidden;
+	 opacity: 0;
+}
+ .menu__item:hover {
+	 background: #9b59b6;
+	 color: #f2f2f2;
+	 transform: scale(1.075);
+	 box-shadow: 0 3px 3px rgba(0, 0, 0, 0.1);
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #becbc2;
+    color: #f6f1f1;
+    letter-spacing: 0.2px;
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+.dropdown-list {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.dropdown-list li {
+    padding: 10px;
+}
+.dropdown-list li:hover {
+    background-color: #f1f1f1;
+}
+.dropdown:hover .dropdown-list {
+    display: block;
+}
+a,p,span,div,li,td {
+    font-weight: 300!important;
+}
+#left-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 220px;
+    background-color: #193277;
+    overflow-y: auto;
+    height: 100vh;
+    border-right: 1px solid #e6ecf5;
+    margin-top: 60px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    overflow-x: hidden;
+    z-index: 2;
+}
+#left-menu.small-left-menu,
+#logo.small-left-menu {
+    width: 60px;
+}
+#left-menu ul {
+    padding: 0;
+    margin: 0;
+}
+#left-menu ul li {
+    padding: 0 10px;
+    display: block;
+    position: relative;
+}
+#left-menu > ul > li {
+    margin: 15px 0;
+}
+#left-menu ul li a {
+    color: #f5f9fa;
+    width: 100%;
+    display: inline-block;
+    width: 260px;
+    height: 37px;
+    position: relative;
+}
+#left-menu ul li :hover {
+  color: #0e9aee;
+} 
+#left-menu ul li a i {
+    font-size: 22px;
+    text-align: center;
+    width: 35px;
+    height: 35px;
+    display: inline-block;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#left-menu ul li:hover a span{
+    color: #0e9aee;
+}
+#left-menu ul li:hover a i{
+    color: #0e9aee;
+}
+#left-menu ul li a span {
+    width: 100%;
+    height: 35px;
+    padding-left: 10px;
+    color: #f3eeee;
+    font-weight: 300;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#left-menu ul li.active a {
+    border-bottom: 2px solid #0e9aee;
+}
+#left-menu ul li.active a span {
+    color: #f1ecef;
+}
+#left-menu ul li.active a i {
+    background-color: #012d8b;
+    color: #fff;
+}
+#left-menu li.has-sub ul {
+    background-color: #012d8b;
+    margin: 0 -10px;
+    padding-left: 45px;
+    height: 0;
+    overflow: hidden;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#left-menu li.has-sub ul > li {
+    padding-top: 10px;
+}
+#left-menu.small-left-menu li.has-sub::after{
+    content: '';
+}
+#left-menu.small-left-menu li.has-sub ul{
+    position: fixed;
+    width: 280px;
+    z-index: 123;
+    height: 0;
+    left: 69px;
+    padding-left: 15px;
+    color: #f5f0f3;
+}
+a:hover {
+    text-decoration: none;
+}
+#logo {
+    position: fixed;
+    top: 0;
+    z-index: 2;
+    left: 0;
+    background-color: #1e3d93;
+    border-color: #464e62;
+    height: 60px;
+    width: 220px;
+    font-size: 30px;
+    line-height: 2em;
+    border-right: 1px solid #e6ecf5;
+    z-index: 4;
+    color: #fff;
+    padding-left: 15px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+@media only screen and (max-width: 992px) {
+  #header {
+    padding-left: 0;
+    margin-left: 30px;
+  }
+}
+#header {
+    background-color: #1e3d93;
+    height: 60px;
+    border-bottom: 1px solid #e6ecf5;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 3;
+}
+#header .header-left {
+    padding-left: 240px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#header .header-right {
+    padding-right: 40px;
+}
+#header .header-right i,
+#header .header-left i {
+    font-size: 30px;
+    line-height: 2em;
+    padding: 0 5px;
+    cursor: pointer;
+}
+#page-container {
+    padding-left: 300px;
+    padding-top: 80px;
+    padding-right: 25px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+#page-container.small-left-menu,
+#header .header-left.small-left-menu {
+    padding-left: 80px;
+}
+@media only screen and (max-width: 992px) {
+    #left-menu,
+    #logo {
+        width: 60px;
+    }   
+    #page-container,
+    #header .header-left {
+        padding-left: 80px;
+    }  
+    #toggle-left-menu,.big-logo{
+        display: none;
+    }
+    .table-container {
+            position: relative;
+            overflow: auto;
+            height: calc(100vh - 100px); /* Adjust the height as needed */
+        }
+            #myTable {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 1;
+        }   
+}
+@media only screen and (min-width: 402px) {
+    #left-menu li.has-sub::after {
+        font-family: "Ionicons";
+        content: "\f3d3";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        transform: rotate(0deg);
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #left-menu li.has-sub.rotate:after {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .small-logo{
+        display: none;
+
+    } 
+} 
+@media only screen and (min-width: 992px) {
+    #left-menu li.has-sub::after {
+        font-family: "Ionicons";
+        content: "\f3d3";
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        transform: rotate(0deg);
+        -webkit-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+    }
+    #left-menu li.has-sub.rotate:after {
+        -webkit-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    .small-logo{
+        display: none;
+
+    } 
+} 
+.active-left-menu {
+    background-color: green; /* Change this to the desired highlight color */
+    color: #fff; /* Change this to the desired text color */
+} 
+#left-menu {
+            height: 600px; /* Set the desired height for your menu */
+            overflow-y: auto;
+        }
+
+        /* Rest of your CSS styles for the menu items */
+        #left-menu ul {
+            list-style: none;
+            padding: 0;
+        }  
+     </style>
+    </head>
+    <body>
+       <section class="conatiner">
+        <div id="logo">
+            <span class="big-logo" style="color: rgba(249, 9, 9, 0.58);">3Life2Supports</span>
+            <span class="small-logo"><img  width="40px" height="60px" src="/media/3Lifes2support-removebg-preview (2).png" class="circle responsive-img" /></center>
+           </span>
+        </div>
+        <div id="left-menu">
+            <ul>
+                <li id="dashboard" >
+                    <a href="/administrate/">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    <span >Dashboard</span>
+                </a></li>
+            <li class="has-sub">
+                    <a href="#">
+                        <i class="fa fa-home"></i>
+                        <span >Home</span>
+                    </a>
+                    <ul>
+                        <li><a href="/blood_carousel_img_table/"> Carousel</a></li>
+                        <li><a href="/tips_table/">Home</a></li>
+                        <li><a href="/nav_list/">Navigation Bar</a></li>
+                        <li><a href="/footer_table/">Footer</a></li>
+                    </ul>
+                </li>
+                <li><a href="/aboutus_table/">
+                    <i class="fas fa-th-large"></i>
+                    <span>About Us</span>
+                </a></li>
+                <li><a href="/events_table/">
+                    <i class="fas fa-sticky-note"></i>
+                    <span>Events</span>
+                  </a>
+                </li>
+                {% if user.is_superuser %}
+                <li><a href="/search_user/">
+                    <i class="fa fa-lock"></i>
+                    <span>Premissions</span>
+                  </a>
+                </li>
+                <li><a href="/adminuser_register/">
+                    <i class="fa fa-user-circle-o"></i>
+                    <span>Add User</span>
+                  </a>
+                </li>
+                {% else %}
+                {% endif %}
+                
+                <li class="has-sub">
+                    <a href="#">
+                        <i class="fas fa-tint"></i>
+                        <span>Blood Donation</span>
+                    </a>
+                    <ul>
+                        <li><a href="/history_table/">About Blood Donation</a></li>
+ <li><a href="/bloodtyperetrieve/">Blood Group</a></li>                
+ <li><a href="/donorsretrieve/">Types Of Blood Donations</a></li>                
+ <li><a href="/donationprocess_table/">Donation Process</a></li>                
+                    </ul>
+                </li>
+                <!--<li><a href="/donor_register/">-->
+                <!--    <i class="fas fa-sticky-note"></i>-->
+                <!--    <span>Add Donor</span>-->
+                <!--</a></li>-->
+                <li><a href="/registerretrive/">
+                  <i class="fas fa-list"></i>
+                  <span> Donor List</span>
+              </a></li>
+<li class="has-sub">
+                    <a href="#">
+                        <i class="fas fa-user"></i>
+                        <span>Eligibility</span>
+                    </a>
+                    <ul>
+                        <li><a href="/basic_table/"> Basic Requirements</a></li>
+                        <li><a href="/additional_table/">Additional Eligibility <br>Requirements</a></li>
+                    </ul>
+                </li>
+<li class="has-sub">
+                    <a href="#">
+                        <i class="fas fa-images"></i>
+                        <span>Gallery</span>
+                    </a>
+                    <ul>
+                        <li><a href="/photo_table/">Images</a></li>
+                        <li><a href="/video_table/">Videos</a></li>
+                        <li><a href="/announcements_retrive_table/">Announcements</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/contactus_table/">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Contact Us</span>
+                </a></li>     
+            </ul>
+        </div>
+            <div class="row d-flex">
+              
+                <div id="main-content">
+                    <div id="header">
+                        <div class="header-left float-left">
+                            <i id="toggle-left-menu" class="ion-android-menu"></i>
+                        </div>
+                       
+                            <div class="profile">
+                              <div class="profile__avatar i-block pull-left">
+                                <span class="profile__monogram i-block"></span>
+                              </div>
+                              <div class="profile__name i-block pull-left">Hello {{ request.user.username }}</div>
+                              <ul class="menu">
+                               
+                                <li><a class="menu__item"  href="/change_password/">Reset Password</a></li>
+                                <li><a class="menu__item" href="/logout_admin/"> Log out</a></li>
+                              </ul>
+                            </div>
+                    </div>
+
+
+
+<script>
+           
+            const username = '{{ request.user.username }}'; // Assuming this is how you access the username in Django
+            
+            let getMonogram = username => {
+              const words = username.toUpperCase().split(' ');
+              let result = '';
+              words.forEach(value => {
+                result += value[0];
+              });
+              return result;
+            };
+            
+            const monogram = getMonogram(username);
+            $('.profile__monogram').text(monogram);
+            $('.profile__name').text(username);
+            
+            // ...
+            </script>
+                    </div>     
+                 <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">    
+                    <div class="table-container">
+                        <table class="table table-striped" id="myTable">           
+                        </table>  
+                    </div>
+                </main>     
+            </div>
+            </section>
+        <script>
+$('#toggle-left-menu').click(function() {
+        if ($('#left-menu').hasClass('small-left-menu')) {
+            $('#left-menu').removeClass('small-left-menu');
+        } else {
+            $('#left-menu').addClass('small-left-menu');
+        }
+        $('#logo').toggleClass('small-left-menu');
+        $('#page-container').toggleClass('small-left-menu');
+        $('#header .header-left').toggleClass('small-left-menu');
+
+        $('#logo .big-logo').toggle('300');
+        $('#logo .small-logo').toggle('300');
+        $('#logo').toggleClass('p-0 pl-1');
+    });
+
+    $(document).on('mouseover', '#left-menu.small-left-menu > ul > li', function() {
+        if (!$(this).hasClass('has-sub')) {
+            var label = $(this).find('span').text();
+            var position = $(this).position();
+            $('#show-lable').css({
+                'top': position.top + 79,
+                'left': position.left + 59,
+                'opacity': 1,
+                'visibility': 'visible'
+            });
+
+            $('#show-lable').text(label);
+        } else {
+            var position = $(this).position();
+            $(this).find('ul').addClass('open');
+
+            if ($(this).find('ul').hasClass('open')) {
+                const height = 47;
+                var count_submenu_li = $(this).find('ul > li').length;
+                if (position.top >= 580) {
+                    var style = {
+                        'top': (position.top + 100) - (height * count_submenu_li),
+                        'height': height * count_submenu_li + 'px'
+                    }
+                    $(this).find('ul.open').css(style);
+                } else {
+                    var style = {
+                        'top': position.top + 79,
+                        'height': height * count_submenu_li + 'px'
+                    }
+
+                    $(this).find('ul.open').css(style);
+                }
+
+            }
+        }
+
+    });
+
+    $(document).on('mouseout', '#left-menu.small-left-menu li a', function(e) {
+        $('#show-lable').css({
+            'opacity': 0,
+            'visibility': 'hidden'
+        });
+    });
+
+    $(document).on('mouseout', '#left-menu.small-left-menu li.has-sub', function(e) {
+        $(this).find('ul').css({
+            'height': 0,
+        });
+    });
+
+    $(window).resize(function() {
+        windowResize();
+    });
+
+    $(window).on('load', function() {
+        windowResize();
+    });
+
+    $('#left-menu li.has-sub > a').click(function() {
+        var _this = $(this).parent();
+
+        _this.find('ul').toggleClass('open');
+        $(this).closest('li').toggleClass('rotate');
+
+        _this.closest('#left-menu').find('.open').not(_this.find('ul')).removeClass('open');
+        _this.closest('#left-menu').find('.rotate').not($(this).closest('li')).removeClass('rotate');
+        _this.closest('#left-menu').find('ul').css('height', 0);
+
+        if (_this.find('ul').hasClass('open')) {
+            const height = 47;
+            var count_submenu_li = _this.find('ul > li').length;
+            _this.find('ul').css('height', height * count_submenu_li + 'px');
+        }
+    });
+
+
+    function windowResize() {
+        var width = $(window).width();
+        if (width <= 992) {
+            $('#left-menu').addClass('small-left-menu');
+            $('#logo').addClass('small-left-menu p-0 pl-1');
+        } else {
+            $('#left-menu').removeClass('small-left-menu');
+            $('#logo').removeClass('small-left-menu p-0 pl-1');
+        }
+    }
+    $(document).ready(function() {
+    // Get the current URL
+    var currentUrl = window.location.href;
+
+    // Loop through each navigation link
+    $('#left-menu li').each(function() {
+        var linkUrl = $(this).find('a').attr('href');
+
+        // Compare the link's URL with the current URL
+        if (currentUrl.indexOf(linkUrl) !== -1) {
+            // Add the class to the active link's parent list item
+            $(this).addClass('active-left-menu');
+
+            // Check if the parent menu item has a dropdown
+            if ($(this).has('ul')) {
+                // Add a class to make the dropdown and its parent active
+                $(this).find('ul').addClass('active-left-menu-dropdown');
+            }
+        }
+    });
+
+    // Attach click event handler
+    $('#left-menu li').click(function() {
+        // Remove the class from any previously active menu item and its dropdown
+        $('#left-menu li').removeClass('active-left-menu');
+        $('#left-menu ul').removeClass('active-left-menu-dropdown');
+
+        // Add the class to the clicked link's parent list item and its dropdown
+        $(this).addClass('active-left-menu');
+        if ($(this).has('ul')) {
+            $(this).find('ul').addClass('active-left-menu-dropdown');
+        }
+    });
+});
+
+</script>
+    </body>
+</html>

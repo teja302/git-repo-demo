@@ -1,0 +1,42 @@
+<!-- delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete AppFooter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Delete AppFooter</h1>
+    <p>Are you sure you want to delete "{{ appfooter.name }}"?</p>
+    <form action="{% url 'delete_appfooter' appfooter.id %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+</body>
+</html>

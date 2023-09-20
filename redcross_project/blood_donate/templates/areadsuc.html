@@ -1,0 +1,18 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form method="post" name="payment" action="/read/{{d.id}}/">{% csrf_token %}
+            <input type="hidden" name="aread" value="1" placeholder="Payment Successful">
+            <input type="submit" name="sub">
+        </form>
+        <script>
+            window.onload=function(){
+                document.forms['payment'].submit();
+            }
+        </script>
+       
+
+    </body>
+</html>

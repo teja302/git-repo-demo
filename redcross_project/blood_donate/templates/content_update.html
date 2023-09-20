@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Events</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #6c5ce7, #0984e3);
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            color: #fff;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 4px;
+        }
+        .btn-primary {
+            margin-top: 20px;
+            background-color: #6c5ce7;
+            border-color: #6c5ce7;
+        }
+        .btn-primary:hover {
+            background-color: #5341a9;
+            border-color: #5341a9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <center><h1 class="mb-4">UPDATE content </h1></center>
+        <form method="post" enctype="multipart/form-data" action="/content_update/{{post.id}}">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="col-md-6 form-group">
+                    <label for="img1">img1</label>
+                    <input type="file" id="img" name="img1" class="form-control" value="{{post.img1}}">
+                </div>
+                 <div class="col-md-6 form-group">
+                    <label for="Heading1">Heading1</label>
+                    <input type="text" id="Heading1" name="Heading1" class="form-control" value="{{post.Heading1}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="description">description</label>
+                    <input type="text" id="text" name="description" class="form-control" value="{{post.description}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="text">text</label>
+                    <input type="text" id="text" name="text" class="form-control" value="{{post.text}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for=" point1">point1</label>
+                    <input type="text" id="point1" name="point1" class="form-control" value="{{post.point1}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point2">point2</label>
+                    <input type="text" id="point2" name="point2" class="form-control" value="{{post.point2}}">
+                </div>
+                <div class="col-md-6 form-group">
+                    <label for="point3">point3</label>
+                    <input type="text" id="point3" name="point3" class="form-control" value="{{post.point3}}">
+                </div> 
+            </div>
+            {% comment %} <div class="form-group">
+                <label for="content">Content</label>
+                <textarea id="content" name="Content" class="form-control" rows="4">{{post.content}}</textarea>
+            </div> {% endcomment %}
+           <center> <button type="submit" class="btn btn-primary">Update content</button></center>
+        </form>
+    </div>
+</body>
+</html>

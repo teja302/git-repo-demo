@@ -1,0 +1,168 @@
+
+{% include 'admindashboard.html' %}
+{% block body %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Tables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+ 
+    
+
+<style>
+   table {
+            border: 6px solid rgb(124, 44, 44);
+            width: 80%;
+            margin: auto;
+        }
+        
+        img {
+            width: 200px;
+            height: 200px;
+        }
+        
+        h3 {
+            font-size: 20px;
+            margin: 0;
+            padding: 10px;
+        }
+        
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+        th{
+          background-color: black;
+          color: aliceblue;
+        }
+        
+        td {
+            border: 2px solid brown;
+          
+        }
+        th,td {
+            border: 2px solid brown;
+            
+            
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        a{
+          border-radius: 30px;
+        }
+        
+        
+</style>
+<style>
+  .icon-container {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+/* Style the Font Awesome icon using :before pseudo-element */
+.icon-container:before {
+content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+font-family: 'Font Awesome 5 Free';
+font-size: 24px;
+color: #3498db;
+margin-right: 10px;
+}
+
+/* Hide the hover text by default */
+.hover-text {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color:red;
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+z-index: 1;
+width:150px;
+}
+
+/* Display the hover text when hovering over the icon container */
+.icon-container:hover .hover-text {
+display: block;
+}
+</style>
+</head>
+<body>
+<div class="container" style="margin-left: 230px;">
+    <h2 align="center" style="margin-top: 70px;">Additional Requirements table</h2>
+    <a href="/additional_form/" class="btn btn-primary"  >Add New additional</a>  <br><br>
+  
+    <table class="table table-fluid" id="myTable">
+    <thead>
+    <tr align="center"><th>Heading</th><th>Point1</th><th>Point2</th><th>Point3</th><th>Point4</th><th>Point5</th><th>Point6</th><th>Point7</th><th>Point8</th><th>Point9</th><th>Image</th><th>Delete</th>
+      <th>Update</th></tr>
+    </thead>
+    <body>
+      {% for i in p %}
+      <tr>
+        
+        <td><center>{{i.heading}}</center></td> 
+        <td><center><p>{{i.point1}}</p></center></td>
+        <td><center><p>{{i.point2}} </p></center></td>
+        <td><center><p>{{i.point3}} </p></center></td> 
+        <td><center><p>{{i.point4}} </p></center></td> 
+        <td><center><p>{{i.point5}}</p></center></td>  
+        <td><center><p>{{i.point6}}</p></center></td>   
+        <td><center><p>{{i.point7}}</p></center></td> 
+        <td><center><p>{{i.point8}}</p></center></td> 
+        <td><center><p>{{i.point9}}</p></center></td> 
+        <td><img src="{{i.image.url}}"></td>
+        {% if user_profile.aremove == "1" %}                        
+        <td>
+          <div class="icon-conatiner">
+         <i class="fa fa-pencil-square-o" aria-hidden="true" style="color: rgb(172, 172, 10); font-size: 35px;"></i>
+         <span class="hover-text"><b>Permission Required</b></span>
+
+          </div>
+        </td>
+        <td>
+          <div class="icon-conatiner">
+     <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+     <span class="hover-text"><b>Permission Required</b></span>
+
+          </div>
+            </td>
+        {% else %}
+          <td><a href="/additional_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+          <td><a href="/additional_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></a></td>
+        {% endif %}
+       
+      </tr>
+      {% endfor %} 
+    </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+</body>
+</html>
+{% endblock%}

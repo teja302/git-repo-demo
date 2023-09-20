@@ -1,0 +1,145 @@
+
+{% include 'admindashboard.html' %}
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            color: #f6f1f1;
+            font-family: sans-serif;
+        }
+
+        .heading {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 80px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .card {
+            width: 350px;
+            height: 200px;
+            border: 1px solid #ccc;
+            transition: 0.3s;
+            border-radius: 25px;
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 50px 10px;
+            color: #fff;
+            border-radius: 25px;
+        }
+
+        .card-body {
+            text-align: center;
+            font-size: 16px;
+            border-radius: 25px;
+        }
+
+        /* Responsive media queries */
+        @media screen and (max-width: 1000px) {
+            .card {
+                width: 80%; /* Adjust card width for smaller screens */
+                margin: 20px auto;
+            }
+        }
+
+        @media screen and (max-width: 620px) {
+            /* Adjust styles for even smaller screens if necessary */
+        }
+
+        .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-size: 50px;
+        }
+
+        h2 {
+            height: 20px;
+            color: #ccc;
+        }
+
+        p {
+            font-size: 40px;
+            color: #ccc;
+        }
+
+        .card-body .a {
+            display: block;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container align-content-center" >
+        <div class="row" style="margin-top: 50px; margin-left: 40px;">
+            
+            <div class="card">
+                <div class="card-body" style="background-color: rgba(230, 66, 71, 0.922);">
+                    <p> <span id="donorCount">{{ donor_count }}</span></p>
+                    <a href="{% url 'registerretrive' %}" class="a"><h2>Donor List</h2></a>
+                    <!-- JavaScript script to update the donor count -->
+                    <script>
+                        // Get the donor count from the server
+                        var donorCount = {{ donor_count|default:"0" }};
+                        // Display the donor count in the 'donorCount' span
+                        document.getElementById('donorCount').textContent = donorCount;
+                    </script>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body" style="background-color: rgba(104, 66, 230, 0.922);">
+                    <p><span id="newsCount">{{ news_count }}</span></p>
+                    <a href="{% url 'events_table' %}" class="a"><h2>News List</h2></a>
+                    <!-- JavaScript script to update the event count -->
+                    <script>
+                        // Get the event count from the server
+                        var newsCount = {{ news_count|default:"0" }};
+                        // Display the event count in the 'EventCount' span
+                        document.getElementById('newsCount').textContent = newsCount;
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+ {% endblock %}
+
+
+ 

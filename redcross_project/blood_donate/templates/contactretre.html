@@ -1,0 +1,50 @@
+
+{% include 'admindashboard.html' %}
+{% block content %}
+<div class="table-responsive" style="margin-left: 230px;">
+    <b align="center">CONTACT DATA</b>
+    <a href="/contactform/" class="btn btn-primary"  style="margin-left: 230px;margin-top: 50px;" >Add New Contact</a>  <br><br>
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr align="center">
+                <th>Heading</th>
+                <th>Address</th>
+                <th>Email</th>
+                
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Loop through video data -->
+            {% for i in post %}
+            <tr>
+                <td>
+                    {{i.heading }} 
+                </td>
+                <td>{{i.address }}</td>
+                <td>{{i.email }}</td>
+                <td>
+                    <a href="/contactedit/{{i.id}}" class="btn btn-info">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Update
+                    </a>
+                </td>
+                <td>
+                    <a href="/contactdelete/{{i.id}}" class="btn btn-danger">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i> Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+    });
+</script>
+{% endblock %}
+
+          

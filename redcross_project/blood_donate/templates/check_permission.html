@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Permission</title>
+</head>
+<body>
+    <h2>Check Permission</h2>
+    <p>User: {{ user.username }}</p>
+    <p>Permission: {{ permission.name }}</p>
+    <p>Has Permission: {% if has_permission %}Yes{% else %}No{% endif %}</p>
+</body>
+</html>

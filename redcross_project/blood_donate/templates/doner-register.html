@@ -1,0 +1,546 @@
+{% block body %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donor Registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Add this viewport meta tag -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 20px;
+        border-color: solid 3px #ddd;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #ddd6f3, #faaca8);
+
+    }
+
+
+    .container h1 {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .form-group button {
+        width: 100%;
+        padding: 10px;
+        background-color: #c41515;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-group button:hover {
+        background-color: #c41515;
+    }
+</style>
+<body>
+    <button class="btn "> <a  class="mb-5 text-primary"  onclick="history.back();"><i class="fa-solid fa-less-than"></i> Go back</a></button>
+<div class="container">
+    <h1>Donor Registration</h1>
+    <div style="border: 3px solid #eae3e3; padding: 10px">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <h2>Personal Details</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-12">
+
+                    <div class="form-group">
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" class="form-control" required><br>
+                        <small id="name-error" class="text-danger"></small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <select id="gender" name="gender" class="form-control" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <small id="genderError" class="text-danger"></small>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <input type="text" id="age" name="age" class="form-control" required><br>
+                        <small id="age-error" class="text-danger"></small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="bloodgroup">Blood Group:</label>
+                        <select id="bloodgroup" name="bloodgroup" class="form-control" required>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select><br>
+                        <small id="bloodgroupError" class="text-danger"></small>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="aadhar">Aadhar:</label>
+                        <input type="text" id="aadhar" name="aadhar" class="form-control" required><br>
+                        <small id="aadhar-error" class="text-danger"></small>
+                    </div>
+                </div>
+            </div>
+            <h2>Contact Details</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="phone_number">Phone Number:</label>
+                        <input type="text" id="phone_number" name="phone_number"  class="form-control" required><br>
+                        <small id="PhonenumberError" class="text-danger"></small>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" class="form-control" required><br>
+                        <small id="EmailError" class="text-danger"></small>
+                    </div>
+                </div>
+            </div>
+            <h2>User Details</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" class="form-control" required><br>
+                        <small id="usernameError" class="text-danger"></small>
+                    </div>
+                </div>
+
+
+                
+                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#username').on('input', function () {
+            var username = $(this).val();
+            if (username) {
+                $.ajax({
+                    url: '/check_username/',
+                    data: {
+                        'username': username
+                    },
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.is_taken) {
+                            $('#username-error').text('Username is already taken.');
+                        } else {
+                            $('#username-error').text('');
+                        }
+                    }
+                });
+            } else {
+                $('#username-error').text('');
+            }
+        });
+    });
+</script>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" class="form-control"required><br>
+                            <small id="passwordError" class="text-danger"></small>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm Password:</label>
+                            <input type="password" id="confirm_password" name="confirm_password"class="form-control" required><br>
+                            <small id="confirmPasswordError" class="text-danger"></small>
+                        </div>
+                    </div>
+                </div>
+                <h2>Location</h2>
+            <hr>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <div class="row">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <select id="country-dropdown" class="form-control" name="country">
+                                    <option value="">Select a country</option>
+                                    {% for country in countries %}
+                                        <option value="{{ country.pk }}" {% if country.name == "India" %}selected{% endif %}>{{ country.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <select id="state-dropdown" class="form-control" name="state">
+                                    <option value="">Select a state</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-12">
+                                <select id="district-dropdown" class="form-control" name="district">
+                                    <option value="">Select a district</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                <div class="form-group">
+                    <button type="submit" value="Submit">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    function validateFullName() {
+       const fullNameInput = document.getElementById("fullname");
+       const fullNameError = document.getElementById("name-error");
+   
+       const fullname = fullNameInput.value.trim();
+       const nameRegex = /^[a-zA-Z ]*$/; // Regular expression for letters and spaces
+   
+       if (fullname === "") {
+           fullNameError.textContent = "Donor name is required";
+           fullNameInput.classList.add("is-invalid");
+           return false;
+       } else if (fullname.length < 3) {
+           fullNameError.textContent = "Donor name must be at least 3 characters";
+           fullNameInput.classList.add("is-invalid");
+           return false;
+       } else if (!nameRegex.test(fullname)) {
+           fullNameError.textContent = "Donor name must contain only letters and spaces";
+           fullNameInput.classList.add("is-invalid");
+           return false;
+       } else {
+           fullNameError.textContent = "";
+           fullNameInput.classList.remove("is-invalid");
+           fullNameInput.classList.add("is-valid");
+           return true;
+       }
+   }
+   
+   document.getElementById("fullname").addEventListener("blur", validateFullName);
+   
+   function validateAge() {
+    const ageInput = document.getElementById("age");
+    const ageError = document.getElementById("age-error");
+
+    const ageValue = ageInput.value.trim();
+    
+    if (ageValue === "") {
+        ageError.textContent = "Age is required";
+        ageInput.classList.add("is-invalid");
+        return false;
+    }
+    
+    const age = parseInt(ageValue);
+
+    if (isNaN(age) || age < 18 || age > 60) {
+        ageError.textContent = "Please enter a valid age between 18 and 60";
+        ageInput.classList.add("is-invalid");
+        return false;
+    } else {
+        ageError.textContent = "";
+        ageInput.classList.remove("is-invalid");
+        ageInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("age").addEventListener("blur", validateAge);
+
+   
+   function validateAadhar() {
+       const aadharInput = document.getElementById("aadhar");
+       const aadharError = document.getElementById("aadhar-error");
+   
+       const aadhar = aadharInput.value.trim();
+   
+       if (aadhar === "") {
+           aadharError.textContent = "Aadhar number is required";
+           aadharInput.classList.add("is-invalid");
+           return false;
+       } else if (!/^\d{12}$/.test(aadhar)) {
+           aadharError.textContent = "Aadhar number must be exactly 12 digits";
+           aadharInput.classList.add("is-invalid");
+           return false;
+       } else if (aadhar.length > 12) {
+           aadharError.textContent = "Aadhar number cannot exceed 12 digits";
+           aadharInput.classList.add("is-invalid");
+           return false;
+       } else {
+           aadharError.textContent = "";
+           aadharInput.classList.remove("is-invalid");
+           aadharInput.classList.add("is-valid");
+           return true;
+       }
+   }
+   document.getElementById("aadhar").addEventListener("blur", validateAadhar);
+
+   function validatePhoneNumber(){
+    const PhonenumberInput = document.getElementById('phone_number');
+    const PhonenumberError = document.getElementById('PhonenumberError');
+     
+    const phone_number = PhonenumberInput.value.trim();
+
+    if(phone_number === ''){
+        PhonenumberError.textContent = 'Phone number is required';
+        PhonenumberInput.classList.add('is-invalid');
+        return false;
+    }else if (!/^\d{10}$/.test(phone_number)) {
+        PhonenumberError.textContent = "Phone number must be exactly 10 digits";
+        PhonenumberInput.classList.add("is-invalid");
+        return false;
+    } else if (phone_number.length > 10) {
+        PhonenumberError.textContent = "Phone number cannot exceed 10 digits";
+        PhonenumberInput.classList.add("is-invalid");
+        return false;
+    } else {
+        PhonenumberError.textContent = "";
+        PhonenumberInput.classList.remove("is-invalid");
+        PhonenumberInput.classList.add("is-valid");
+        return true;
+       }
+   }
+   document.getElementById('phone_number').addEventListener('blur', validatePhoneNumber)
+   
+   function validateEmail() {
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("EmailError");
+
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regular expression for email format
+
+    if (email === "") {
+        emailError.textContent = "Email is required";
+        emailInput.classList.add("is-invalid");
+        return false;
+    } else if (!emailRegex.test(email)) {
+        emailError.textContent = "Please enter a valid email address";
+        emailInput.classList.add("is-invalid");
+        return false;
+    } else {
+        emailError.textContent = "";
+        emailInput.classList.remove("is-invalid");
+        emailInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("email").addEventListener("blur", validateEmail);
+function validateUsername() {
+    const usernameInput = document.getElementById("username");
+    const usernameError = document.getElementById("usernameError");
+
+    const username = usernameInput.value.trim();
+    const usernameRegex = /^[a-zA-Z0-9_]+$/; // Regular expression for alphanumeric and underscore
+
+    if (username === "") {
+        usernameError.textContent = "Username is required";
+        usernameInput.classList.add("is-invalid");
+        return false;
+    } else if (username.length < 4) {
+        usernameError.textContent = "Username must be at least 4 characters";
+        usernameInput.classList.add("is-invalid");
+        return false;
+    } else if (!usernameRegex.test(username)) {
+        usernameError.textContent = "Username can only contain letters, numbers, and underscores";
+        usernameInput.classList.add("is-invalid");
+        return false;
+    } else {
+        usernameError.textContent = "";
+        usernameInput.classList.remove("is-invalid");
+        usernameInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("username").addEventListener("blur", validateUsername);
+function validatePassword() {
+    const passwordInput = document.getElementById("password");
+    const passwordError = document.getElementById("passwordError");
+
+    const password = passwordInput.value.trim();
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (password === "") {
+        passwordError.textContent = "Password is required";
+        passwordInput.classList.add("is-invalid");
+        return false;
+    } else if (!passwordRegex.test(password)) {
+        passwordError.textContent = "Password must be at least 8 characters and contain at least one letter, one number, and one special character";
+        passwordInput.classList.add("is-invalid");
+        return false;
+    } else {
+        passwordError.textContent = "";
+        passwordInput.classList.remove("is-invalid");
+        passwordInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("password").addEventListener("blur", validatePassword);
+function validateConfirmPassword() {
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirm_password");
+    const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+    const password = passwordInput.value.trim();
+    const confirmPassword = confirmPasswordInput.value.trim();
+
+    if (confirmPassword === "") {
+        confirmPasswordError.textContent = "Confirm Password is required";
+        confirmPasswordInput.classList.add("is-invalid");
+        return false;
+    } else if (password !== confirmPassword) {
+        confirmPasswordError.textContent = "Passwords do not match";
+        confirmPasswordInput.classList.add("is-invalid");
+        return false;
+    } else {
+        confirmPasswordError.textContent = "";
+        confirmPasswordInput.classList.remove("is-invalid");
+        confirmPasswordInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("confirm_password").addEventListener("blur", validateConfirmPassword);
+function validateAddress() {
+    const addressInput = document.getElementById("address");
+    const addressError = document.getElementById("addressError");
+
+    const address = addressInput.value.trim();
+
+    if (address === "") {
+        addressError.textContent = "Address is required";
+        addressInput.classList.add("is-invalid");
+        return false;
+    } else if (address.length < 10) {
+        addressError.textContent = "Address must be at least 10 characters";
+        addressInput.classList.add("is-invalid");
+        return false;
+    } else {
+        addressError.textContent = "";
+        addressInput.classList.remove("is-invalid");
+        addressInput.classList.add("is-valid");
+        return true;
+    }
+}
+
+document.getElementById("address").addEventListener("blur", validateAddress);
+
+   </script>
+
+
+
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const countryDropdown = document.getElementById("country-dropdown");
+    const stateDropdown = document.getElementById("state-dropdown");
+    const districtDropdown = document.getElementById("district-dropdown");
+   
+
+    function populateStates(selectedCountryId) {
+        stateDropdown.innerHTML = "<option value=''>Select a state</option>";
+
+        if (selectedCountryId) {
+            fetch(`/get_states/${selectedCountryId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    data.states.forEach(state => {
+                        stateDropdown.insertAdjacentHTML("beforeend", `<option value="${state.pk}">${state.name}</option>`);
+                    });
+                });
+        }
+    }
+
+    countryDropdown.addEventListener("change", function() {
+        const selectedCountryId = this.value;
+
+        // Clear dependent dropdowns
+        districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+       
+
+        populateStates(selectedCountryId);
+    });
+
+    // Populate states dropdown when the page loads with default selected country
+    const defaultCountryId = countryDropdown.value;
+    populateStates(defaultCountryId);
+
+    
+        stateDropdown.addEventListener("change", function() {
+            const selectedStateId = this.value;
+    
+            // Clear dependent dropdowns
+            districtDropdown.innerHTML = "<option value=''>Select a district</option>";
+    
+            if (selectedStateId) {
+                fetch(`/get_districts/${selectedStateId}/`)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.districts.forEach(district => {
+                            districtDropdown.insertAdjacentHTML("beforeend", `<option value="${district.pk}">${district.name}</option>`);
+                        });
+                    });
+            }
+        });
+        
+        
+        // Similarly, implement the logic for the district and city dropdowns.
+    });
+    
+    </script>
+    
+
+</div>
+</div>
+</html>
+{% endblock %}

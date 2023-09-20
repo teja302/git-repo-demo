@@ -1,0 +1,268 @@
+<!-- 
+ <html>
+  <head>
+      <title>carsouel table</title>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <style>
+         
+       table{
+        border : 6px solid rgb(124, 44, 44);
+        width: 80%;
+        
+      }
+      img{
+        height: 175PX;
+        width: 75%;
+      }
+      h3{
+        height: 175PX;
+        width: 75%;
+      }
+      p{
+        height: 15PX;
+        width: 75%;
+      }
+      /* h7{
+        height: 175PX;
+        width: 90%;
+      } */
+    td{
+       border: 2px solid brown; 
+       height: 20px;
+       width: 0px;
+      } 
+      
+     </style>
+  </head>
+
+   <body><center>
+    <h2>Events Table</h2>
+    <table border="2">
+      <thead >
+      <tr align="center" hight="10px">
+        <th>Heading</th>
+        <th>Image</th>
+        <th>Content</th>
+        <th>Update</th> 
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody> 
+    {% for i in q %}
+        <tr>
+          <td><center><h3>{{ i.heading }} </h3></center></td>  
+          <td><center><img src="{{i.image.url}}"></center></td>  
+          <td><center><h7>{{ i.content }}</h7></center></td>  
+         
+          <td>
+            <center><a href="/events_update/{{i.id}}"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: rgb(172, 172, 10); font-size: 35px;"></i>Update</a></center>
+          </td>
+          <td>
+            <center><a href="/events_delete/{{i.id}}"><i class="fa fa-trash-o" aria-hidden="true" style="color:orange; font-size: 35px;"></i>Delete</a></center>
+          </td>
+        </tr>
+        
+    
+    {% endfor %}    
+    </tbody>
+    </table>
+  </center>
+  <br>  
+<br>  
+<center><a href="/emp" class="btn btn-primary">Add New Events</a></center>  
+  </body> 
+</html>  -->
+
+
+{% include 'admindashboard.html' %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Data Tables</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+  src="http://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" ></script>
+
+
+<style>
+  
+   table {
+            border: 6px solid rgb(124, 44, 44);
+            width: 80%;
+            margin: auto;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        h3 {
+            font-size: 10px;
+            margin: 0;
+            padding: 10px;
+        }
+        
+        p {
+            margin: 0;
+            padding: 5px;
+        }
+        
+        td {
+            border: 2px solid brown;
+            height:90px;
+          
+        }
+        th,td {
+            border: 2px solid brown;
+            
+        }
+        th{
+          background-color: black;
+          color: aliceblue;
+        }
+        
+        .btn i {
+            font-size: 20px;
+        }
+        a{
+          border-radius: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            table {
+                width: 100%;
+            }
+            img{
+              height: auto;
+            }
+        }
+</style>
+<style>
+  .icon-container {
+position: relative;
+display: inline-block;
+cursor: pointer;
+}
+
+/* Style the Font Awesome icon using :before pseudo-element */
+.icon-container:before {
+content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+font-family: 'Font Awesome 5 Free';
+font-size: 24px;
+color: #3498db;
+margin-right: 10px;
+}
+
+/* Hide the hover text by default */
+.hover-text {
+display: none;
+position: absolute;
+top: 100%;
+left: 0;
+background-color:red;
+color: #fff;
+padding: 5px;
+border-radius: 5px;
+z-index: 1;
+width:150px;
+}
+
+/* Display the hover text when hovering over the icon container */
+.icon-container:hover .hover-text {
+display: block;
+}
+</style>
+</head>
+<body>
+  <div class="table-responsive" style="margin-left: 230px;">
+    <h2 align="center" style="margin-top: 23px;">About Data</h2>
+    <a href="/aboutus_form/" class="btn btn-primary"  >Add New About</a>  <br><br>
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr align="center">
+             
+
+  
+   
+   <th>Heading</th>
+      <th>Subtitle1</th>
+      <th>Subtitle2</th>
+      <th>Content1</th>
+      <th>Content2</th>
+      <th>Content3</th>
+      <th>Content4</th>
+      <th>Content5</th>
+      <th>Image1</th>
+      <th>Delete</th>
+      <th>Update</th></tr>
+    </thead>
+    <tbody>
+      {% for i in post %}
+      <tr>
+        <td>{{i.heading}} </td> 
+        <td>{{i.subtitle1}} </td> 
+        <td>{{i.subtitle2}} </td>
+        <td>{{i.content1}}</td>
+        <td>{{i.content2}}</td>  
+        <td>{{i.content3}}</td> 
+        <td>{{i.content4}}</td> 
+        <td>{{i.content5}}</td> 
+        <td><center><img src="{{i.image1.url}}"></center></td> 
+        {% if user_profile.aread == "1" %}
+        <td>
+          <div class="icon-container">
+          <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i> 
+          <span class="hover-text"><b>Permission Required</b></span>
+          </div>    
+        </td>
+        <td>
+          <div class="icon-container">
+          <i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></i> 
+          <span class="hover-text"><b>Permission Required</b></span>
+
+          </div> 
+              </td>
+        {% else %}
+        
+          <td><a href="/aboutus_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+        
+       
+          <td><a href="/aboutus_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></a></td>
+          
+        {% endif %}
+      </tr>
+      {% endfor %} 
+    </tbody>
+    </table>
+</div>
+
+<script>
+    $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+    </script>
+</body>
+</html>
+{% endblock %}

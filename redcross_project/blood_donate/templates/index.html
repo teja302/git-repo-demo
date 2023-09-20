@@ -1,0 +1,399 @@
+
+
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+<link rel="stylesheet" href="{%static 'base/css/aboutBlood.css'%}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Bank - Homepage</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="styleshe et">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+        /* Reset some default styles */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    font-family:'Poppins', sans-serif;
+    line-height: 1.6;
+    background-color: #fff;
+    max-width: 100%;
+}
+
+.containerss {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: #333;
+    color: #131212;
+    padding: 10px 0;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header ul {
+    list-style: none;
+}
+
+header ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #000000;
+}
+
+/* Hero Section */
+#hero {
+    background-image: url('hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #444444;
+    text-align: center;
+    padding: 200px 0;
+    max-height: min-content;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+#hero p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #cc0000;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+/* About Section */
+#about {
+    background-color: #fff;
+    padding: 40px 0;
+    text-align: center;
+}
+
+#about h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 1.1rem;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+footer p {
+    font-size: 0.9rem;
+}
+#flashcards{
+    background-color: #444444;
+}
+
+@keyframes heartRate {
+      0%{
+        width: 0;
+      }
+      25% {
+        width: 100%;
+      }
+      50% {
+        width: 100%;
+      }
+      75% {
+        width: 100%;
+      }
+      100% {
+        width: 0;
+      }
+      
+    }
+
+    /* Apply the heart rate monitor animation to the animated underline */
+    h2 {
+      position: relative;
+      overflow: hidden;
+    }
+    
+   
+    h2::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: rgba(255, 0, 0, 0.87); /* Adjust the color as needed */
+      bottom: 0;
+      left: 0;
+      animation: heartRate 3s 1 ; /* Adjust the animation duration as needed */
+      animation-delay: 2s;
+    }
+    h1 {
+       
+        margin: 100px auto;
+       
+       
+        
+        max-width: 600px;
+        position: relative;
+      }
+      h1:before {
+        content: "";
+        display: block;
+        width: 130px;
+        height: 5px;
+        background: #191970;
+        left: 0;
+        top: 50%;
+        position: absolute;
+      }
+      h1:after {
+        content: "";
+        display: block;
+        width: 130px;
+        height: 5px;
+        border-radius: 4px;
+        background: #191970;
+        right: 0;
+        top: 50%;
+        position: absolute;
+      }
+  
+
+/* .row:not(:last-of-type) {
+  border-bottom: 4px dotted tomato;
+  padding-bottom: 10px;
+} */
+    </style>
+</head>
+<body>
+    <br>
+   <section>
+    {% include "Carousel/blood_carousel.html" %}
+   </section>
+
+
+
+    <section id="faq" >
+        <div class="containerss " style="padding: 10px 30px; ">
+           <center >  <h2 > Blood Donation</h2></center>
+          
+           
+<div class="row ">
+ 
+        <div class="col-md-12">
+            <h5 style="text-align: justify;" class="mt-3">
+                Blood donation is when people give a part of their blood to help others. This donated blood is used to help sick people who need it for surgeries, 
+        accidents, or other medical treatments. 
+            </h5> 
+        </div>
+        </div>     
+            <br>
+           
+        <!-- <b> <p>  who can donate blood? </p>  </b>
+         <p>   Any healthy adult, both male and female, can donate blood.
+            Donor should be in the age group of 18 to 65 years.  </p> 
+        
+            <b> <p> Who is not allowed to donate blood?</p>  </b>
+            <p>     if you have a cold, flu, sore throat, cold sore, stomach bug or any other infection. </p> 
+        
+             <b> <p> Can I donate blood every month? </p>  </b>
+             <p>      Any healthy adult, both male and female, can donate every three months.  </p> 
+        
+            <b> <p> Is it good to donate blood?  </p>  </b>
+            <p>     Regular blood donation is linked to lower blood pressure and a lower risk for heart attacks. </p> 
+        
+        
+            <b> <p> Can I donate 2 units of blood? </p>  </b>
+            <p>    A Power Red donation allows you to safely donate two units of red blood cells during one donation.  </p> 
+        
+        
+            <b> <p> How much blood do you donate? </p>  </b>
+            <p>     about one pint
+            Whole blood donors give 500 milliliters, about one pint. </p>  -->
+                    <!-- Add more questions and answers as needed -->
+        </div>
+        
+        <div class="row ">
+            <div class="col-md-1"></div>
+            
+            <div class="col-md-5 order-md-2" data-aos="fade-right" data-aos-duration="1500" data-aos-once="true">
+                <img src="/media/img_blood1.png" alt="Image 1" class="img-fluid img-thumbnail rounded w-100 ">
+            </div>
+            
+            <div class="col-md-5  order-md-1 mt-4" data-aos="fade-left" data-aos-duration="1500" data-aos-once="true">
+                <h2>Why Donate Blood?</h2>
+                <br>
+                <div class="container-sm">
+               <h5> Donating blood is a selfless act that can save lives. Blood donations are essential for various medical procedures, surgeries, and emergencies. <br> </h5><h6 style="text-decoration: underline;"> Here are some reasons why you should consider donating blood:</h6>
+                
+                <ol>
+                    <li>One blood donation can save up to three lives.</li>
+                    <li>Patients undergoing surgeries, cancer treatments, and trauma victims rely on donated blood.</li>
+                    <li>Blood cannot be manufactured; it relies on voluntary donations.</li>
+                </ol>
+            </div>
+            </div>
+        </div>
+     
+              <br>
+              <div class="row w-100">
+                <div class="col-md-1"></div>
+                
+                <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500" data-aos-once="true">
+                    <img src="/media/7FQcvg.webp" alt="Image 2" class="img-fluid img-thumbnail rounded w-100 " >
+                </div>
+                
+                <div class="col-md-5 mt-4" data-aos="fade-down" data-aos-duration="1500" data-aos-once="true">
+                    <h2>The Blood Donation Process</h2>
+                    <br>
+                    <div class="container-sm">
+                    <h5>The blood donation process is simple and safe. Here's what you can expect:</h5>
+                    
+                    <ol>
+                        <li>Registration and Health Check: You'll fill out a form and undergo a brief health check.</li>
+                        <li>Donation: A healthcare professional will collect your blood using a sterile needle.</li>
+                        <li>Refreshments: After donating, you'll enjoy refreshments to help your body recover.</li>
+                    </ol>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="row w-100">
+                <div class="col-md-1"></div>
+                
+                <div class="col-md-5 order-md-2" data-aos="zoom-in" data-aos-duration="1500" data-aos-once="true">
+                    <img src="/media/img3_update.png" alt="Image 1" class="img-fluid img-thumbnail rounded w-100 h-100 ">
+                </div>
+                
+                <div class="col-md-5 order-md-1 mt-4" data-aos="zoom-in" data-aos-duration="1500" data-aos-once="true">
+                    <h2 >Who Can Donate Blood?</h2>
+                    <br>
+                   <h5>Not everyone is eligible to donate blood. Here are some general eligibility criteria:<br> </h5><h6 style="text-decoration: underline;"> Here are some reasons why you should consider donating blood:</h6>
+                    
+                    <ol>
+                       
+                            <li>You must be at least 18 years old (age may vary by region).</li>
+                            <li>You should be in good health and feeling well on the day of donation.</li>
+                            <li>Weight and height requirements may apply.</li>
+                            <li>Some medical conditions and medications may affect eligibility.</li>
+                        
+                          <p>It's important to check with your local blood donation center for specific eligibility guidelines.</p>
+                      
+                    </ol>
+                </div>
+            </div> -->
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+              
+                
+              <script>
+                AOS.init(
+                 { once : true }
+                );
+              </script>
+    </section>
+    <hr>
+
+    <div class="row">
+        <span class="col-md-12 text-center"><h2>Tips for donation</h2></span>
+        <div class="card mx-auto border-3 mt-2"  style="width: 22rem;">
+            <h5 class="card-header card-title text-center alert-danger ">The day before</h5>
+            <div class="card-body">
+           
+              <p class="card-text">
+                <ul style="list-style-type: circle;" >
+                    <li>Have an iron-rich diet such as beans, spinach or meat, poultry.</li>
+                    <li>Have a proper sleep of at least 8 hours.</li>
+                    <li>Include more liquids in your diet.</li>
+                </ul>
+              
+                
+               </p>
+              
+            </div>
+          </div>
+         
+          <div class="card mx-auto  border-3 mt-2"  style="width: 22rem;">
+            <h5 class="card-header card-title text-center alert-primary">On the Donating day</h5>
+            <div class="card-body">
+            
+              <p class="card-text">
+                <ul style="list-style-type: circle;" >
+                    
+                    <li>Do carry your identify identification forms Eg: driver’s license.</li>
+                    <li>Drink 2 cups of water before donating blood. </li>
+                    <li>Wear a half sleeved shirt so that you can easily roll it up avoid fast food before donating. </li>
+                </ul>
+              </p>
+              
+            </div>
+          </div>
+    <div class="card mx-auto  border-3 mt-2"  style="width: 22rem;">
+        <h5 class="card-header text-center alert-success "  >After the Donation</h5>
+        <div class="card-body">
+        
+          <p class="card-text">
+            <ul style="list-style-type: circle;" >
+          
+                <li>Reward yourself with a snack as refreshment immediately.</li> 
+                <li>Drink more liquids over a period of 24 hours.</li>
+                <li>Remove the bandage after few hours.</li>
+                <li>Don’t do vigorous workout & give your body rest.</li>
+            </ul>
+          </p>
+          
+        </div>
+      </div>
+    </div>
+    <hr>
+<br>
+   
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+  
+</body>
+</html>
+{% endblock %}

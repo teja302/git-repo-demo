@@ -1,0 +1,98 @@
+{% include 'admindashboard.html' %}
+
+{% block content %}
+<style>
+    .icon-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  }
+  
+  /* Style the Font Awesome icon using :before pseudo-element */
+  .icon-container:before {
+  content: "\f05a"; /* Unicode for the Font Awesome info-circle icon */
+  font-family: 'Font Awesome 5 Free';
+  font-size: 24px;
+  color: #3498db;
+  margin-right: 10px;
+  }
+  
+  /* Hide the hover text by default */
+  .hover-text {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color:red;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  z-index: 1;
+  width:150px;
+  }
+  
+  /* Display the hover text when hovering over the icon container */
+  .icon-container:hover .hover-text {
+  display: block;
+  }
+  body{
+    background-color: #dee2e6;
+  }
+  </style>
+    <!-- Dashboard-specific content here -->
+    <div class="table-responsive" style="margin-left: 230px;">
+        <h2 style="color:black" class="d-flex justify-content-center">Events Data</h2>
+        <a href="/eventsform/" class="btn btn-primary"  >Add New Events</a>  <br><br>
+        <table class="table table-striped" id="myTable" style="background-color: #efffff;color:black">
+            <thead>
+                <tr align="center">
+                    <th>Heading</th>
+                    <th>Image</th>
+                    <th>Content</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through video data -->
+               
+                {% for i in post %}
+                <tr>
+                  <td><center><p>{{i.heading}} </p></center></td>  
+                  <td><center><img src="{{i.image.url}}" style="width:230px"></center></td>  
+                  <td><center><p>{{i.content}}</p></center></td> 
+                  
+                  {% if user_profile.awrite == "1" %}                 
+                  <td>
+                    <div class="icon-container">
+                    <i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i>
+                    <span class="hover-text"><b>Permission Required</b></span>
+                    </div>    
+                            </td>
+                  <td>
+                    <div class="icon-container">
+                    <i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></i>
+                    <span class="hover-text"><b>Permission Required</b></span>
+
+                    </div>
+                    </td>
+                  {% else %}
+                    <td><a href="/events_delete/{{i.id}}"><i class="fa fa-solid fa-trash" style="color: red; font-size:20px;"></i></a></td>
+                    <td><a href="/events_edit/{{i.id}}"><i class="fa fa-pencil-square-o" style="color: blue; font-size:20px;"></i></a></td>
+                  {% endif %}
+                  </td>
+                </tr>
+                {% endfor %} 
+                
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
+{% endblock %}
+

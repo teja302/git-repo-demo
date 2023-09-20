@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% block body %}
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+    <title>Popup</title>
+    <style>
+        .gallpopup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(88, 86, 86, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+        }
+        .gallpopup img {
+            width: 700px;
+            height: 500px;
+            object-fit: contain;
+            padding: 50px;
+           
+        }
+        .gallclose {
+            position: absolute;
+            font-size: 24px;
+            cursor: pointer;
+
+        }
+        .gallimg{
+            background-color: white;
+
+        }
+        .galli{
+          background-color:red;
+          padding-bottom: 10px;
+            padding-left: 10px;
+            padding-right: 10px;
+
+        }
+@media (max-width: 768px){
+   .gallpopup img
+        {
+            width:auto;
+            height:auto;
+            max-width:90%;
+            max-height:90%;
+            padding:10px
+        }
+  }
+  
+}
+       
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+
+            <h1 align="center">Images</h1>
+
+        <div id="open-popup">
+                <div class="row g-4">
+                    {% for image in images %}
+                        <div class="col-lg-4">
+                            {% load user_agents %}
+                            {% if  request|is_mobile %}   
+                            <img src="{{ image.image_file.url }}"  alt="" style="width: 100%;height: 200px; border: 1px solid rgb(214, 196, 196); padding: 3px;"   > <br><br> 
+
+                            {% else %}   
+                             <img src="{{ image.image_file.url }}"  alt="" style="width: 100%;height: 200px; border: 1px solid rgb(214, 196, 196); padding: 3px;"   onclick="showPopup(this.src)"   > <br><br> 
+                             {% endif %}
+                        </div>
+                        
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="gallpopup" id="gallpopup">
+            <div class="gallimg">
+               <div style="text-align: right;margin-right: 30px;"><i class="gallclose galli" onclick="closePopup()">x</i></div> 
+                <img src="" id="popup-img">
+            </div>
+    </div>
+    <script>
+        function showPopup(imgSrc) {
+            document.getElementById("popup-img").src = imgSrc;
+            document.getElementById("gallpopup").style.display = "flex";
+        }
+        function closePopup() {
+            document.getElementById("gallpopup").style.display = "none";
+        }
+    </script>
+</body>
+</html>
+
+{% endblock %}

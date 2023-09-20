@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Item</title>
+</head>
+<body>
+    <h1>Edit Item</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ item.name }}" required><br>
+        <label for="url">URL:</label>
+        <input type="text" name="url" value="{{ item.url }}" required><br>
+        <label for="icon">Icon:</label>
+        <input type="text" name="icon" value="{{ item.icon }}" required><br>
+        <label for="heading">Heading (optional):</label>
+        <input type="text" name="heading" value="{{ item.heading }}"><br>
+        <button type="submit">Update</button>
+    </form>
+    <a href="{% url 'read_items' %}">Back to List</a>
+</body>
+</html>

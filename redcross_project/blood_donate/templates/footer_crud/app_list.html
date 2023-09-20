@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App List</title>
+</head>
+<body>
+    <h1>App List</h1>
+    <ul>
+        {% for app in apps %}
+            <li>{{ app.heading }} - <a href="{% url 'update_app' app.id %}">Edit</a> | <a href="{% url 'delete_app' app.id %}">Delete</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'create_app' %}">Create New App</a>
+</body>
+</html>
